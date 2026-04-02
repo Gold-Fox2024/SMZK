@@ -1,0 +1,98 @@
+/* =========================================================
+   1. 基础深色模式变量适配
+   ========================================================= */
+.dark {
+  --vp-c-brand: #4ade80;        /* 科技绿 */
+  --vp-c-brand-dark: #22c55e;
+  --vp-c-text-1: #ffffff;
+  --vp-c-text-2: rgba(255, 255, 255, 0.7);
+}
+
+/* =========================================================
+   2. 首页卡片（科技感视觉）
+   ========================================================= */
+.VPFeatures .VPFeature {
+  border: 1px solid var(--vp-c-divider) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  background-color: transparent !important;
+}
+
+/* 深色模式下的卡片微光背景 */
+.dark .VPFeatures .VPFeature {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* 悬停时的科技发光效果 */
+.VPFeatures .VPFeature:hover {
+  border-color: var(--vp-c-brand) !important;
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.15);
+  transform: translateY(-5px);
+}
+
+/* 标题文字颜色适配 */
+.VPFeatures .VPFeature .title {
+  color: var(--vp-c-text-1) !important;
+}
+
+/* =========================================================
+   3. 标题与发光效果
+   ========================================================= */
+.dark .VPHero .name {
+  color: #ffffff !important;
+  text-shadow: 0 0 30px rgba(74, 222, 128, 0.4);
+}
+
+/* =========================================================
+   4. 右侧大纲导航（页面大纲）
+   ========================================================= */
+.VPLocalNav .VPLocalNavOutlineDropdown .text {
+  font-weight: bold;
+  color: var(--vp-c-brand);
+}
+
+.VPDocOutlineItem a {
+  color: var(--vp-c-text-2) !important;
+  border-left: 2px solid var(--vp-c-divider);
+  padding-left: 10px;
+  transition: all 0.3s;
+}
+
+.VPDocOutlineItem a:hover,
+.VPDocOutlineItem a.is-active {
+  border-left: 2px solid var(--vp-c-brand) !important;
+  color: var(--vp-c-brand) !important;
+}
+
+/* =========================================================
+   5. 搜索框适配
+   ========================================================= */
+.VPNavBarSearch .DocSearch-Button {
+  border: 1px solid var(--vp-c-divider) !important;
+  background-color: rgba(128, 128, 128, 0.05) !important;
+}
+
+/* =========================================================
+   6. 正文段落排版优化
+   ========================================================= */
+.vp-doc p {
+  line-height: 1.8;
+  margin-bottom: 1.2em;
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+
+/* 仅对普通文本段落应用首行缩进，排除包含数学公式的段落 */
+.vp-doc p:not(:has(.mjx-container)) {
+  text-indent: 2em;
+}
+
+/* =========================================================
+   7. 排除首行缩进
+   ========================================================= */
+.vp-doc li, 
+.vp-doc blockquote p, 
+.vp-doc .custom-block p,
+.vp-doc h1, .vp-doc h2, .vp-doc h3, .vp-doc h4, .vp-doc h5, .vp-doc h6 {
+  text-indent: 0 !important;
+  text-align: left;
+}
