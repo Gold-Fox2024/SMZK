@@ -6,7 +6,7 @@ export default defineConfig({
   lang: 'zh-CN',
   title: "数模智库",
   description: "数学建模学习与实战平台",
-  base: '/SMZK/',
+  base: '/',
 
   // 数学公式支持
   markdown: {
