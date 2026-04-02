@@ -8,6 +8,12 @@ export default defineConfig({
   description: "数学建模学习与实战平台",
   base: '/',
 
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['meta', { name: 'keywords', content: '数学建模, 数模, 建模, Python, MATLAB, 算法, 评价模型, 优化模型' }],
+    ['meta', { name: 'author', content: 'Gold-Fox2024' }]
+  ],
+
   // 数学公式支持
   markdown: {
     config: (md) => {
@@ -45,6 +51,10 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: '模型分类', link: '/models/evaluation/ahp' },
       { text: '比赛应用', link: '/applications/data-analysis' }
+    ],
+
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/Gold-Fox2024/SMZK' }
     ],
 
     // 侧边栏配置

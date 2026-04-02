@@ -1,98 +1,115 @@
 /* =========================================================
-   1. 基础深色模式变量适配
+   1. 基础深色模式与科技色调
    ========================================================= */
-.dark {
+:root {
   --vp-c-brand: #4ade80;        /* 科技绿 */
   --vp-c-brand-dark: #22c55e;
-  --vp-c-text-1: #ffffff;
-  --vp-c-text-2: rgba(255, 255, 255, 0.7);
+  --vp-c-brand-light: #86efac;
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(135deg, #4ade80 0%, #3b82f6 100%);
+  
+  /* 程序员风格字体 */
+  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+.dark {
+  --vp-c-bg: #0f172a;           /* 深蓝色背景 */
+  --vp-c-bg-soft: #1e293b;
+  --vp-c-text-1: #f8fafc;
+  --vp-c-text-2: #94a3b8;
 }
 
 /* =========================================================
-   2. 首页卡片（科技感视觉）
+   2. 首页网格背景特效
+   ========================================================= */
+.VPHome {
+  background-image: radial-gradient(circle at 2px 2px, rgba(74, 222, 128, 0.05) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+/* =========================================================
+   3. 首页卡片（程序员风格视觉）
    ========================================================= */
 .VPFeatures .VPFeature {
-  border: 1px solid var(--vp-c-divider) !important;
+  border: 1px solid rgba(74, 222, 128, 0.1) !important;
+  background-color: rgba(30, 41, 59, 0.5) !important;
+  backdrop-filter: blur(8px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  background-color: transparent !important;
+  border-radius: 12px !important;
 }
 
-/* 深色模式下的卡片微光背景 */
-.dark .VPFeatures .VPFeature {
-  background-color: rgba(255, 255, 255, 0.02) !important;
-}
-
-/* 悬停时的科技发光效果 */
 .VPFeatures .VPFeature:hover {
   border-color: var(--vp-c-brand) !important;
-  box-shadow: 0 0 20px rgba(74, 222, 128, 0.15);
-  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(74, 222, 128, 0.2);
+  transform: translateY(-8px);
 }
 
-/* 标题文字颜色适配 */
 .VPFeatures .VPFeature .title {
-  color: var(--vp-c-text-1) !important;
-}
-
-/* =========================================================
-   3. 标题与发光效果
-   ========================================================= */
-.dark .VPHero .name {
-  color: #ffffff !important;
-  text-shadow: 0 0 30px rgba(74, 222, 128, 0.4);
-}
-
-/* =========================================================
-   4. 右侧大纲导航（页面大纲）
-   ========================================================= */
-.VPLocalNav .VPLocalNavOutlineDropdown .text {
+  font-family: var(--vp-font-family-mono);
   font-weight: bold;
-  color: var(--vp-c-brand);
-}
-
-.VPDocOutlineItem a {
-  color: var(--vp-c-text-2) !important;
-  border-left: 2px solid var(--vp-c-divider);
-  padding-left: 10px;
-  transition: all 0.3s;
-}
-
-.VPDocOutlineItem a:hover,
-.VPDocOutlineItem a.is-active {
-  border-left: 2px solid var(--vp-c-brand) !important;
-  color: var(--vp-c-brand) !important;
 }
 
 /* =========================================================
-   5. 搜索框适配
+   4. 标题与发光效果
    ========================================================= */
-.VPNavBarSearch .DocSearch-Button {
-  border: 1px solid var(--vp-c-divider) !important;
-  background-color: rgba(128, 128, 128, 0.05) !important;
+.VPHero .name {
+  filter: drop-shadow(0 0 20px rgba(74, 222, 128, 0.3));
+  font-family: var(--vp-font-family-mono);
+  letter-spacing: -2px;
 }
 
 /* =========================================================
-   6. 正文段落排版优化
+   5. 正文与代码块美化
+   ========================================================= */
+.vp-doc code {
+  font-family: var(--vp-font-family-mono);
+  background-color: rgba(74, 222, 128, 0.1) !important;
+  color: var(--vp-c-brand);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* 程序员风格的引用块 */
+.vp-doc blockquote {
+  border-left: 4px solid var(--vp-c-brand);
+  background-color: rgba(74, 222, 128, 0.05);
+  border-radius: 0 8px 8px 0;
+}
+
+/* =========================================================
+   6. 排版优化
    ========================================================= */
 .vp-doc p {
   line-height: 1.8;
   margin-bottom: 1.2em;
   text-align: justify;
-  text-justify: inter-ideograph;
 }
 
-/* 仅对普通文本段落应用首行缩进，排除包含数学公式的段落 */
 .vp-doc p:not(:has(.mjx-container)) {
   text-indent: 2em;
 }
 
-/* =========================================================
-   7. 排除首行缩进
-   ========================================================= */
 .vp-doc li, 
 .vp-doc blockquote p, 
 .vp-doc .custom-block p,
 .vp-doc h1, .vp-doc h2, .vp-doc h3, .vp-doc h4, .vp-doc h5, .vp-doc h6 {
   text-indent: 0 !important;
   text-align: left;
+}
+
+/* =========================================================
+   7. 滚动条美化
+   ========================================================= */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--vp-c-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--vp-c-bg-soft);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-brand);
 }
