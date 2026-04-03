@@ -5,7 +5,7 @@ hero:
   text: "Modeling the World"
   tagline: "数学建模 × 编程实战 × 知识库"
   image:
-    src: https://vitepress.dev/vitepress-logo-large.png
+    src: /assets/smzk-hero.png
     alt: SMZK Logo
   actions:
     - theme: brand
