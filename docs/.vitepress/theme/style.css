@@ -10,6 +10,10 @@
   
   /* 程序员风格字体 */
   --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  
+  /* Rainbow 动画颜色变量 */
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #4ade80 50%, #3b82f6 50%);
+  --vp-home-hero-image-filter: blur(40px);
 }
 
 .dark {
@@ -20,11 +24,21 @@
 }
 
 /* =========================================================
-   2. 首页网格背景特效
+   2. 首页网格背景特效与彩虹动画
    ========================================================= */
 .VPHome {
   background-image: radial-gradient(circle at 2px 2px, rgba(74, 222, 128, 0.05) 1px, transparent 0);
   background-size: 40px 40px;
+}
+
+/* 彩虹渐变动画 */
+@keyframes rainbow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.VPHero .name {
+  animation: rainbow 10s linear infinite;
 }
 
 /* =========================================================
@@ -58,8 +72,67 @@
   letter-spacing: -2px;
 }
 
+/* 正文 H1 渐变色 */
+.vp-doc h1 {
+  background: linear-gradient(120deg, #4ade80, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
 /* =========================================================
-   5. 正文与代码块美化
+   5. Mac 风格代码块
+   ========================================================= */
+div[class*="language-"] {
+  position: relative;
+  border-radius: 12px !important;
+  padding-top: 32px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+div[class*="language-"]::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ff5f56;
+  box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #27c93f;
+  z-index: 2;
+}
+
+/* 代码块内部滚动条 */
+div[class*="language-"] pre::-webkit-scrollbar {
+  height: 6px;
+}
+div[class*="language-"] pre::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+/* =========================================================
+   6. 侧边栏图标（VS Code 风格）
+   ========================================================= */
+.VPSidebarItem.level-0 > .item > .text::before {
+  content: "📁";
+  margin-right: 8px;
+  font-size: 0.9em;
+  opacity: 0.7;
+}
+
+.VPSidebarItem.level-1 > .item > .link > .text::before {
+  content: "📄";
+  margin-right: 8px;
+  font-size: 0.9em;
+  opacity: 0.5;
+}
+
+/* =========================================================
+   7. 正文与排版优化
    ========================================================= */
 .vp-doc code {
   font-family: var(--vp-font-family-mono);
@@ -69,16 +142,12 @@
   border-radius: 4px;
 }
 
-/* 程序员风格的引用块 */
 .vp-doc blockquote {
   border-left: 4px solid var(--vp-c-brand);
   background-color: rgba(74, 222, 128, 0.05);
   border-radius: 0 8px 8px 0;
 }
 
-/* =========================================================
-   6. 排版优化
-   ========================================================= */
 .vp-doc p {
   line-height: 1.8;
   margin-bottom: 1.2em;
@@ -98,7 +167,7 @@
 }
 
 /* =========================================================
-   7. 滚动条美化
+   8. 滚动条美化
    ========================================================= */
 ::-webkit-scrollbar {
   width: 8px;
