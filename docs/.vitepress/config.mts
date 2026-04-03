@@ -16,6 +16,7 @@ export default defineConfig({
 
   // 数学公式支持
   markdown: {
+    lineNumbers: true, // 开启代码块行号
     config: (md) => {
       md.use(mathjax3)
     }

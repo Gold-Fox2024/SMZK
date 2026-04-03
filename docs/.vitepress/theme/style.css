@@ -1,40 +1,42 @@
 /* =========================================================
-   1. 全局变量与核心配色
+   1. 全局变量与配色系统 (双模式适配)
    ========================================================= */
 :root {
-  /* 品牌色 - 保持科技绿 */
-  --vp-c-brand: #4ade80;
+  /* 核心品牌色 */
+  --vp-c-brand: #4ade80;        /* 科技绿 */
   --vp-c-brand-dark: #22c55e;
   --vp-c-brand-light: #86efac;
   
   /* 程序员风格字体 */
   --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
   
-  /* 渐变与动画背景 */
+  /* 渐变与动画配置 */
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: linear-gradient(135deg, #4ade80 0%, #3b82f6 100%);
-  --vp-home-hero-image-background-image: linear-gradient(-45deg, #4ade80 50%, #3b82f6 50%);
-  --vp-home-hero-image-filter: blur(50px);
 }
 
-/* 白天模式 - 极简科技风格 */
+/* 🟢 白天模式 - 极简科技白 (Light Tech) */
 :root {
-  --vp-c-bg: #f8fafc;           /* 干净的浅灰白 */
-  --vp-c-bg-soft: #f1f5f9;
-  --vp-c-bg-mute: #e2e8f0;
-  --vp-c-text-1: #1e293b;
+  --vp-c-bg: #ffffff;           /* 纯净白 */
+  --vp-c-bg-soft: #f8fafc;      /* 极浅灰蓝 */
+  --vp-c-bg-mute: #f1f5f9;      /* 浅灰蓝 */
+  --vp-c-text-1: #0f172a;       /* 深石板蓝 */
   --vp-c-text-2: #475569;
   --vp-grid-color: rgba(74, 222, 128, 0.08);
+  --vp-code-bg: #f8fafc;
+  --vp-code-line-number-color: #94a3b8;
 }
 
-/* 黑夜模式 - 午夜极客风格 */
+/* 🔵 黑夜模式 - 午夜极客黑 (Midnight Tech) */
 .dark {
-  --vp-c-bg: #0b0f19;           /* 纯粹的午夜黑 */
+  --vp-c-bg: #0b0f19;           /* 纯粹午夜黑 */
   --vp-c-bg-soft: #161d2b;
   --vp-c-bg-mute: #1e293b;
   --vp-c-text-1: #f8fafc;
   --vp-c-text-2: #94a3b8;
   --vp-grid-color: rgba(74, 222, 128, 0.05);
+  --vp-code-bg: #161d2b;
+  --vp-code-line-number-color: #475569;
 }
 
 /* =========================================================
@@ -67,22 +69,29 @@
 
 .VPFeatures .VPFeature:hover {
   border-color: var(--vp-c-brand) !important;
-  box-shadow: 0 0 25px rgba(74, 222, 128, 0.15);
+  box-shadow: 0 0 30px rgba(74, 222, 128, 0.2);
   transform: translateY(-8px);
 }
 
 /* =========================================================
-   3. Mac 风格代码块
+   3. Mac 风格代码块 (重构)
    ========================================================= */
 div[class*="language-"] {
   position: relative;
   border-radius: 12px !important;
   padding-top: 36px !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background-color: var(--vp-code-bg) !important;
   border: 1px solid var(--vp-c-bg-mute);
-  margin: 1.5em 0;
+  margin: 2em 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
+.dark div[class*="language-"] {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Mac 按钮 */
 div[class*="language-"]::before {
   content: "";
   position: absolute;
@@ -93,12 +102,21 @@ div[class*="language-"]::before {
   border-radius: 50%;
   background-color: #ff5f56;
   box-shadow: 18px 0 0 #ffbd2e, 36px 0 0 #27c93f;
-  z-index: 2;
+  z-index: 3;
 }
 
-/* 代码块内部美化 */
-div[class*="language-"] pre {
+/* 移除之前冲突的背景设置 */
+.vp-doc [class*="language-"] pre {
+  background: transparent !important;
   margin: 0 !important;
+  padding: 12px 0 !important;
+}
+
+/* 行号美化 */
+.vp-doc [class*="language-"] .line-numbers-wrapper {
+  border-right: 1px solid var(--vp-c-bg-mute);
+  color: var(--vp-code-line-number-color);
+  padding-top: 12px !important;
 }
 
 /* =========================================================
@@ -115,10 +133,11 @@ div[class*="language-"] pre {
 
 .vp-doc code {
   font-family: var(--vp-font-family-mono);
-  background-color: var(--vp-c-bg-mute) !important;
+  background-color: var(--vp-c-bg-soft) !important;
   color: var(--vp-c-brand-dark);
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 3px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--vp-c-bg-mute);
 }
 
 .dark .vp-doc code {
@@ -131,8 +150,8 @@ div[class*="language-"] pre {
   text-align: justify;
 }
 
-/* 仅在非移动端应用缩进 */
-@media (min-width: 768px) {
+/* 仅在宽屏显示首行缩进 */
+@media (min-width: 960px) {
   .vp-doc p:not(:has(.mjx-container)) {
     text-indent: 2em;
   }
@@ -144,7 +163,7 @@ div[class*="language-"] pre {
 }
 
 /* =========================================================
-   5. 侧边栏图标
+   5. 侧边栏图标与美化
    ========================================================= */
 .VPSidebarItem.level-0 > .item > .text::before {
   content: "📁";
