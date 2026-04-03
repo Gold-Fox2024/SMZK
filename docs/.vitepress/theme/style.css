@@ -112,11 +112,13 @@ div[class*="language-"]::before {
   padding: 12px 0 !important;
 }
 
-/* 行号美化 */
+/* 行号美化 (确保与代码内容对齐) */
 .vp-doc [class*="language-"] .line-numbers-wrapper {
   border-right: 1px solid var(--vp-c-bg-mute);
   color: var(--vp-code-line-number-color);
-  padding-top: 12px !important;
+  padding-top: 48px !important; /* 36px (Mac 栏) + 12px (代码内间距) */
+  line-height: 1.8;
+  font-family: var(--vp-font-family-mono);
 }
 
 /* =========================================================
@@ -131,7 +133,8 @@ div[class*="language-"]::before {
   margin-bottom: 1.5em;
 }
 
-.vp-doc code {
+/* 仅针对行内代码，排除代码块中的 code 标签背景 */
+.vp-doc :not(pre) > code {
   font-family: var(--vp-font-family-mono);
   background-color: var(--vp-c-bg-soft) !important;
   color: var(--vp-c-brand-dark);
@@ -140,7 +143,7 @@ div[class*="language-"]::before {
   border: 1px solid var(--vp-c-bg-mute);
 }
 
-.dark .vp-doc code {
+.dark .vp-doc :not(pre) > code {
   color: var(--vp-c-brand-light);
 }
 
