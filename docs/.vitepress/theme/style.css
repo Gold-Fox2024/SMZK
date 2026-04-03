@@ -74,7 +74,58 @@
 }
 
 /* =========================================================
-   3. Mac 风格代码块 (重构)
+   3. 首页 LOGO（Hero Image）增强：无方形边框的发光与对比
+   ========================================================= */
+.VPHome .VPHero .image,
+.VPHome .VPHero .image-container {
+  position: relative;
+}
+
+.VPHome .VPHero .image::before,
+.VPHome .VPHero .image-container::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 50% 45%, rgba(74, 222, 128, 0.28), transparent 60%),
+    radial-gradient(circle at 60% 60%, rgba(59, 130, 246, 0.22), transparent 62%);
+  filter: blur(32px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.VPHome .VPHero .image img,
+.VPHome .VPHero .image .image-src,
+.VPHome .VPHero .image-container img,
+.VPHome .VPHero .image-container .image-src {
+  position: relative;
+  z-index: 1;
+  transform: translateZ(0) scale(1.12);
+  transform-origin: center;
+  filter: drop-shadow(0 10px 24px rgba(2, 6, 23, 0.18));
+}
+
+.dark .VPHome .VPHero .image img,
+.dark .VPHome .VPHero .image .image-src,
+.dark .VPHome .VPHero .image-container img,
+.dark .VPHome .VPHero .image-container .image-src {
+  filter: drop-shadow(0 18px 48px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 26px rgba(74, 222, 128, 0.22))
+    drop-shadow(0 0 32px rgba(59, 130, 246, 0.16));
+}
+
+@media (max-width: 640px) {
+  .VPHome .VPHero .image img,
+  .VPHome .VPHero .image .image-src,
+  .VPHome .VPHero .image-container img,
+  .VPHome .VPHero .image-container .image-src {
+    transform: translateZ(0) scale(1.06);
+  }
+}
+
+/* =========================================================
+   4. Mac 风格代码块 (重构)
    ========================================================= */
 div[class*="language-"] {
   position: relative;
@@ -122,7 +173,7 @@ div[class*="language-"]::before {
 }
 
 /* =========================================================
-   4. 正文排版与标题
+   5. 正文排版与标题
    ========================================================= */
 .vp-doc h1 {
   background: linear-gradient(120deg, #4ade80, #3b82f6);
@@ -166,7 +217,7 @@ div[class*="language-"]::before {
 }
 
 /* =========================================================
-   5. 侧边栏图标与美化
+   6. 侧边栏图标与美化
    ========================================================= */
 .VPSidebarItem.level-0 > .item > .text::before {
   content: "📁";
@@ -181,7 +232,7 @@ div[class*="language-"]::before {
 }
 
 /* =========================================================
-   6. 滚动条美化
+   7. 滚动条美化
    ========================================================= */
 ::-webkit-scrollbar {
   width: 8px;
