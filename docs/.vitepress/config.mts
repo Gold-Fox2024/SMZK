@@ -7,7 +7,6 @@ export default defineConfig({
   title: "数模智库",
   description: "数学建模学习与实战平台",
   base: '/',
-  appearance: 'dark', // 强制开启深色模式
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
