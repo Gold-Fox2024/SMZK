@@ -19,3 +19,23 @@ import pandas as pd
 df = pd.read_csv('data.csv')
 df.describe()
 ```
+
+## 常用代码 (MATLAB)
+
+::: tip 提示
+MATLAB 在矩阵运算和统计分析中非常高效。
+:::
+
+```matlab
+% 数据加载与基本统计
+data = readmatrix('data.csv');
+summary_stats = [mean(data); median(data); std(data)];
+
+% 简单绘图示例
+figure;
+plot(data(:,1), 'LineWidth', 1.5);
+grid on;
+title('数据趋势分析');
+xlabel('样本序号');
+ylabel('数值');
+```
