@@ -55,8 +55,12 @@ html {
     position: relative;
   }
 
-  .VPNavBar.has-sidebar .wrapper {
+  .VPNavBar.has-sidebar {
     padding: 0 32px !important;
+  }
+
+  .VPNavBar.has-sidebar .wrapper {
+    padding: 0 24px !important;
   }
 
   .VPNavBar.has-sidebar .container {
@@ -332,10 +336,11 @@ html {
   align-items: center;
   justify-content: center;
   --smzk-hero-x: 0px;
-  --smzk-hero-y: -10px;
+  --smzk-hero-y: -40px;
   --smzk-hero-scale: 0.96;
   order: -1;
   margin-bottom: -8px;
+  width: 100%;
 }
 
 .VPHome .VPHero .image-container {
@@ -379,9 +384,10 @@ html {
 
   .VPHome .VPHero .image,
   .VPHome .VPHero .image-container {
-    --smzk-hero-x: 0px;
-    --smzk-hero-y: -200px;
+    --smzk-hero-x: -120px;
+    --smzk-hero-y: -40px;
     --smzk-hero-scale: 1.02;
+    width: auto;
   }
 
   .VPHome .VPHero.has-image .container {
@@ -474,12 +480,17 @@ div[class*="language-"]::before {
 }
 
 .vp-doc [class*="language-"] .line-numbers-wrapper .line-number {
-  display: block;
   line-height: var(--vp-code-line-height);
 }
 
 .vp-code span {
   color: var(--shiki-dark, inherit) !important;
+}
+
+.vp-code .line {
+  display: inline-block;
+  min-height: calc(var(--vp-code-line-height) * 1em);
+  width: 100%;
 }
 
 /* =========================================================
@@ -495,13 +506,14 @@ div[class*="language-"]::before {
 }
 
 /* 仅针对行内代码，排除代码块中的 code 标签背景 */
-.vp-doc :not(pre) > code {
-  font-family: var(--vp-font-family-mono);
+.vp-doc :not(pre) > code,
+.vp-doc .custom-block :not(pre) > code {
+  font-family: var(--vp-font-family-mono) !important;
   background-color: var(--vp-c-bg-soft) !important;
-  color: var(--vp-c-brand-light);
-  padding: 3px 6px;
-  border-radius: 6px;
-  border: 1px solid var(--vp-c-bg-mute);
+  color: var(--vp-c-brand-light) !important;
+  padding: 3px 6px !important;
+  border-radius: 6px !important;
+  border: 1px solid var(--vp-c-bg-mute) !important;
 }
 
 .vp-doc p {
