@@ -223,6 +223,10 @@ html {
   .VPHome .VPHomeHero {
     top: calc(50% - 58px);
   }
+
+  .VPHome .VPHero .main {
+    transform: translateY(-22px);
+  }
 }
 
 .VPHome .VPHero .container {
