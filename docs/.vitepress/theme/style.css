@@ -219,6 +219,12 @@ html {
   width: 100%;
 }
 
+@media (max-width: 959px) {
+  .VPHome .VPHomeHero {
+    top: calc(50% - 58px);
+  }
+}
+
 .VPHome .VPHero .container {
   display: flex;
   flex-direction: column;
