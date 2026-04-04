@@ -27,22 +27,26 @@
 }
 
 @media (min-width: 960px) {
-  .VPNavBar .content-body {
+  .VPNavBar .wrapper {
     position: relative;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    column-gap: 16px;
+  }
+
+  .VPNavBar .content-body {
+    position: static;
   }
 
   .VPNavBar .menu {
-    grid-column: 2;
-    justify-self: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .VPNavBar .search {
-    grid-column: 3;
-    justify-self: end;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   .VPNavBar .appearance,
