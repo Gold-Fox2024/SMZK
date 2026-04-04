@@ -45,6 +45,12 @@ html {
 }
 
 @media (min-width: 960px) {
+  html:has(.VPHome),
+  body:has(.VPHome) {
+    height: 100%;
+    overflow: hidden;
+  }
+
   /* 1. 容器定位：作为绝对定位子元素的基准，并居中 */
   .VPNavBar .container {
     position: relative !important;
