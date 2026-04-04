@@ -26,6 +26,12 @@
   color-scheme: dark;
 }
 
+html:has(.VPHome),
+body:has(.VPHome) {
+  height: 100%;
+  overflow: hidden;
+}
+
 @media (min-width: 960px) {
   .VPNavBar .wrapper {
     position: relative;
@@ -55,6 +61,17 @@
   .VPNavBar .extra {
     display: none !important;
   }
+}
+
+.VPNavBar.home,
+.VPNavBar.home.top {
+  transition: none !important;
+  background-color: transparent !important;
+  border-bottom: none !important;
+}
+
+.VPNavBar .divider {
+  display: none !important;
 }
 
 .smzk-gh {
@@ -222,7 +239,7 @@
   position: relative;
   display: block;
   z-index: 0;
-  width: min(320px, 70vw);
+  width: min(280px, 62vw);
   height: auto;
   transform: translate(var(--smzk-hero-x), var(--smzk-hero-y)) translateZ(0) scale(var(--smzk-hero-scale));
   transform-origin: center;
