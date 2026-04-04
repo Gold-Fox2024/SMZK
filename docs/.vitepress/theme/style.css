@@ -87,7 +87,15 @@
 @media (min-width: 768px) {
   .VPHome .VPHero .image,
   .VPHome .VPHero .image-container {
-    margin-top: -56px;
+    margin-top: -72px;
+    margin-left: -56px;
+  }
+
+  .VPHome .VPHero .image img,
+  .VPHome .VPHero .image .image-src,
+  .VPHome .VPHero .image-container img,
+  .VPHome .VPHero .image-container .image-src {
+    transform: translate(-56px, -44px) translateZ(0) scale(1.08);
   }
 }
 
