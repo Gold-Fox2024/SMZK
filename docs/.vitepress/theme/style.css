@@ -1,5 +1,5 @@
 /* =========================================================
-   1. 全局变量与配色系统 (双模式适配)
+   1. 全局变量与配色系统
    ========================================================= */
 :root {
   /* 核心品牌色 */
@@ -74,7 +74,7 @@
 }
 
 /* =========================================================
-   3. 首页 LOGO（Hero Image）增强：无方形边框的发光与对比
+   3. 首页 LOGO增强：无方形边框的发光与对比
    ========================================================= */
 .VPHome .VPHero .image,
 .VPHome .VPHero .image-container {
@@ -82,20 +82,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  --smzk-hero-x: 0px;
+  --smzk-hero-y: 0px;
+  --smzk-hero-scale: 1.08;
 }
 
 @media (min-width: 768px) {
   .VPHome .VPHero .image,
   .VPHome .VPHero .image-container {
-    margin-top: -72px;
-    margin-left: -56px;
-  }
-
-  .VPHome .VPHero .image img,
-  .VPHome .VPHero .image .image-src,
-  .VPHome .VPHero .image-container img,
-  .VPHome .VPHero .image-container .image-src {
-    transform: translate(-56px, -44px) translateZ(0) scale(1.08);
+    --smzk-hero-x: -220px;
+    --smzk-hero-y: -140px;
   }
 }
 
@@ -106,7 +102,7 @@
   position: relative;
   display: block;
   z-index: 0;
-  transform: translateZ(0) scale(1.08);
+  transform: translate(var(--smzk-hero-x), var(--smzk-hero-y)) translateZ(0) scale(var(--smzk-hero-scale));
   transform-origin: center;
   filter: drop-shadow(0 12px 28px rgba(2, 6, 23, 0.14))
     drop-shadow(0 0 22px rgba(74, 222, 128, 0.18));
@@ -126,12 +122,12 @@
   .VPHome .VPHero .image .image-src,
   .VPHome .VPHero .image-container img,
   .VPHome .VPHero .image-container .image-src {
-    transform: translateZ(0) scale(1.04);
+    transform: translate(0px, 0px) translateZ(0) scale(1.04);
   }
 }
 
 /* =========================================================
-   4. Mac 风格代码块 (重构)
+   4. Mac 风格代码块
    ========================================================= */
 div[class*="language-"] {
   position: relative;
@@ -169,7 +165,7 @@ div[class*="language-"]::before {
   padding: 12px 0 !important;
 }
 
-/* 行号美化 (确保与代码内容对齐) */
+/* 行号美化 */
 .vp-doc [class*="language-"] .line-numbers-wrapper {
   border-right: 1px solid var(--vp-c-bg-mute);
   color: var(--vp-code-line-number-color);
