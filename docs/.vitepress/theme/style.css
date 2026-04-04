@@ -408,6 +408,12 @@ html {
     top: calc(50% - 96px);
   }
 
+  .VPHome .VPHero.has-image .container {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
   .VPHome .VPHero .image,
   .VPHome .VPHero .image-container {
     width: 100%;
@@ -420,6 +426,13 @@ html {
     margin-left: auto !important;
     margin-right: auto !important;
     margin-top: var(--smzk-hero-y) !important;
+  }
+
+  .VPHome .VPHero .main,
+  .VPHome .VPHero .heading {
+    width: 100%;
+    align-items: center !important;
+    text-align: center !important;
   }
 }
 
