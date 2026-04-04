@@ -403,7 +403,7 @@ html {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 959px) {
   .VPHome .VPHomeHero {
     top: calc(50% - 96px);
   }
@@ -412,6 +412,11 @@ html {
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
+  }
+
+  .VPHome .VPHero .image {
+    order: -1 !important;
+    margin: 0 auto !important;
   }
 
   .VPHome .VPHero .image,
