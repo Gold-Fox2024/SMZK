@@ -70,8 +70,8 @@
 }
 
 .smzk-plaque {
-  position: fixed;
-  top: calc(var(--vp-nav-height) + 10px);
+  position: absolute;
+  top: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
@@ -96,6 +96,8 @@
 .VPHome {
   background-image: radial-gradient(circle at 2px 2px, var(--vp-grid-color) 1px, transparent 0);
   background-size: 40px 40px;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
 @keyframes rainbow {
@@ -110,20 +112,6 @@
   letter-spacing: -2px;
 }
 
-.VPFeatures .VPFeature {
-  border: 1px solid var(--vp-c-bg-mute) !important;
-  background-color: var(--vp-c-bg-soft) !important;
-  backdrop-filter: blur(8px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  border-radius: 12px !important;
-}
-
-.VPFeatures .VPFeature:hover {
-  border-color: var(--vp-c-brand) !important;
-  box-shadow: 0 0 30px rgba(74, 222, 128, 0.2);
-  transform: translateY(-8px);
-}
-
 /* =========================================================
    3. 首页 LOGO增强：无方形边框的发光与对比
    ========================================================= */
@@ -132,12 +120,13 @@
 }
 
 .VPHome .VPHero .container {
+  display: flex;
   flex-direction: column;
   align-items: center;
   gap: 18px;
   min-height: calc(100vh - var(--vp-nav-height));
-  padding-top: 10vh;
-  padding-bottom: 22vh;
+  justify-content: center;
+  padding-top: 2vh;
 }
 
 .VPHome .VPHero .main {
@@ -151,12 +140,12 @@
   justify-content: center !important;
   align-items: center;
   gap: 12px;
-  margin-top: 8vh;
+  margin-top: 14px;
   position: relative;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 22px;
+  padding-top: 14px;
 }
 
 .VPHome .VPHero .actions::before {
@@ -183,6 +172,7 @@
   text-transform: uppercase;
   font-size: 12px;
   opacity: 0.85;
+  margin-top: -6px;
 }
 
 .VPHome .VPHero .name {
@@ -210,7 +200,7 @@
   .VPHome .VPHero .image,
   .VPHome .VPHero .image-container {
     --smzk-hero-x: 0px;
-    --smzk-hero-y: 0px;
+    --smzk-hero-y: -36px;
     --smzk-hero-scale: 1.02;
   }
 }
