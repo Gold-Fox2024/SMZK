@@ -1,6 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 import './style.css'
-import { h, onMounted, ref } from 'vue'
+import { h, onMounted, ref, nextTick } from 'vue'
 
 function GithubIconLink() {
   return h(
@@ -45,6 +45,25 @@ export default {
       'nav-bar-title-before': () => GithubIconLink(),
       'nav-bar-content-after': () => h(SitePlaque)
     }),
+  enhanceApp({ router }) {
+    if (typeof window === 'undefined') return
+
+    router.onBeforeRouteChange = (to) => {
+      if (
+        !document.startViewTransition ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
+        return
+      }
+
+      return new Promise((resolve) => {
+        const transition = document.startViewTransition(async () => {
+          resolve()
+          await nextTick()
+        })
+      })
+    }
+  },
   setup() {
     onMounted(() => {
       const canvas = document.createElement('canvas')
