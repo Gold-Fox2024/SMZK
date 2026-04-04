@@ -7,6 +7,7 @@ export default defineConfig({
   title: "数模智库",
   description: "数学建模学习与实战平台",
   base: '/',
+  appearance: false,
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
@@ -23,6 +24,7 @@ export default defineConfig({
   },
 
   themeConfig: {
+    siteTitle: false,
     outlineTitle: '本页精要',
     // 开启本地搜索
     search: {
@@ -54,9 +56,7 @@ export default defineConfig({
       { text: '比赛应用', link: '/applications/data-analysis' }
     ],
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/Gold-Fox2024/SMZK' }
-    ],
+    socialLinks: [],
 
     // 侧边栏配置
     sidebar: {

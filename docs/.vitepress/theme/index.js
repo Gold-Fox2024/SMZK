@@ -1,12 +1,52 @@
 import DefaultTheme from 'vitepress/theme'
 import './style.css'
-import { h, onMounted } from 'vue'
+import { h, onMounted, ref } from 'vue'
+
+function GithubIconLink() {
+  return h(
+    'a',
+    {
+      class: 'smzk-gh',
+      href: 'https://github.com/Gold-Fox2024/SMZK',
+      target: '_blank',
+      rel: 'noreferrer'
+    },
+    [
+      h(
+        'svg',
+        { viewBox: '0 0 24 24', 'aria-hidden': 'true' },
+        [
+          h('path', {
+            d: 'M12 .5C5.73.5.75 5.66.75 12.1c0 5.14 3.29 9.5 7.86 11.04.58.11.79-.26.79-.57 0-.28-.01-1.02-.02-2-3.2.71-3.88-1.58-3.88-1.58-.52-1.36-1.27-1.72-1.27-1.72-1.04-.73.08-.72.08-.72 1.15.08 1.75 1.21 1.75 1.21 1.02 1.8 2.67 1.28 3.32.98.1-.76.4-1.28.72-1.57-2.55-.3-5.23-1.31-5.23-5.82 0-1.29.44-2.35 1.16-3.18-.12-.3-.5-1.5.11-3.13 0 0 .95-.31 3.11 1.21.9-.26 1.86-.39 2.82-.39.96 0 1.92.13 2.82.39 2.16-1.52 3.11-1.21 3.11-1.21.61 1.63.23 2.83.11 3.13.72.83 1.16 1.89 1.16 3.18 0 4.52-2.69 5.52-5.25 5.81.41.37.78 1.09.78 2.2 0 1.59-.02 2.87-.02 3.26 0 .32.2.69.8.57 4.57-1.54 7.86-5.9 7.86-11.04C23.25 5.66 18.27.5 12 .5Z'
+          })
+        ]
+      )
+    ]
+  )
+}
+
+const SitePlaque = {
+  setup() {
+    const url = ref('')
+    onMounted(() => {
+      url.value = location.origin
+    })
+    return () =>
+      url.value
+        ? h('div', { class: 'smzk-plaque' }, [h('span', { class: 'url' }, url.value)])
+        : null
+  }
+}
 
 export default {
   extends: DefaultTheme,
+  Layout: () =>
+    h(DefaultTheme.Layout, null, {
+      'nav-bar-title-before': () => GithubIconLink(),
+      'nav-bar-content-after': () => h(SitePlaque)
+    }),
   setup() {
     onMounted(() => {
-      // 粒子跟随动画脚本
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
       canvas.style.position = 'fixed'
