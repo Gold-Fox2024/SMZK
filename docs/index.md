@@ -5,7 +5,7 @@ hero:
   text: "Modeling the World"
   tagline: "数学建模 × 编程实战 × 知识库"
   image:
-    src: /assets/smzk-hero.png
+    src: /assets/smzk-hero.svg
     alt: SMZK Logo
   actions:
     - theme: brand
