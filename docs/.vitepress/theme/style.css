@@ -43,7 +43,7 @@
 html:has(.VPHome),
 body:has(.VPHome) {
   height: 100%;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
 }
 
@@ -442,7 +442,7 @@ html {
   .VPHome .VPHero .image-container {
     width: 100%;
     justify-content: center;
-    overflow-x: auto;
+    overflow-x: hidden;
     --smzk-hero-x: 0px;
     --smzk-hero-y: -56px;
   }
@@ -475,11 +475,20 @@ html {
 }
 
 @media (max-width: 640px) {
+  .VPHome .VPHero .image .image-src,
+  .VPHome .VPHero .image-container .image-src {
+    width: min(320px, 72vw) !important;
+    max-width: 320px !important;
+  }
+
   .VPHome .VPHero .image img,
   .VPHome .VPHero .image .image-src,
   .VPHome .VPHero .image-container img,
   .VPHome .VPHero .image-container .image-src {
     transform: translate(0px, 0px) translateZ(0) scale(1);
+    -webkit-user-drag: none;
+    user-select: none;
+    touch-action: manipulation;
   }
 }
 
