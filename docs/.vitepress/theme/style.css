@@ -92,6 +92,7 @@
   .VPHome .VPHero .image-container {
     --smzk-hero-x: -220px;
     --smzk-hero-y: -140px;
+    --smzk-hero-scale: 1.16;
   }
 }
 
