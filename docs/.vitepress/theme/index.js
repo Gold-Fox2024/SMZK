@@ -1,6 +1,6 @@
 import DefaultTheme from 'vitepress/theme'
 import './style.css'
-import { h, onMounted, ref, nextTick } from 'vue'
+import { h, onMounted, onUnmounted, ref, nextTick } from 'vue'
 
 function GithubIconLink() {
   return h(
@@ -48,7 +48,7 @@ export default {
   enhanceApp({ router }) {
     if (typeof window === 'undefined') return
 
-    router.onBeforeRouteChange = (to) => {
+    router.onBeforeRouteChange = () => {
       if (
         !document.startViewTransition ||
         window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -57,7 +57,7 @@ export default {
       }
 
       return new Promise((resolve) => {
-        const transition = document.startViewTransition(async () => {
+        document.startViewTransition(async () => {
           resolve()
           await nextTick()
         })
@@ -65,9 +65,16 @@ export default {
     }
   },
   setup() {
+    let cleanup = null
+
+    onUnmounted(() => {
+      if (cleanup) cleanup()
+    })
+
     onMounted(() => {
       const canvas = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
+      if (!ctx) return
       canvas.style.position = 'fixed'
       canvas.style.top = '0'
       canvas.style.left = '0'
@@ -78,19 +85,22 @@ export default {
       let width, height
       let particles = []
       const mouse = { x: null, y: null, radius: 100 }
+      let animationFrameId = null
 
       const resize = () => {
         width = canvas.width = window.innerWidth
         height = canvas.height = window.innerHeight
       }
 
+      const handleMouseMove = (e) => {
+        mouse.x = e.x
+        mouse.y = e.y
+      }
+
       window.addEventListener('resize', resize)
       resize()
 
-      window.addEventListener('mousemove', (e) => {
-        mouse.x = e.x
-        mouse.y = e.y
-      })
+      window.addEventListener('mousemove', handleMouseMove)
 
       class Particle {
         constructor() {
@@ -111,9 +121,12 @@ export default {
         }
 
         update() {
+          if (mouse.x === null || mouse.y === null) return
+
           let dx = mouse.x - this.x
           let dy = mouse.y - this.y
           let distance = Math.sqrt(dx * dx + dy * dy)
+          if (distance < 0.001) return
           let forceDirectionX = dx / distance
           let forceDirectionY = dy / distance
           let maxDistance = mouse.radius
@@ -150,11 +163,22 @@ export default {
           particles[i].draw()
           particles[i].update()
         }
-        requestAnimationFrame(animate)
+        animationFrameId = requestAnimationFrame(animate)
       }
 
       init()
       animate()
+
+      cleanup = () => {
+        if (animationFrameId !== null) {
+          cancelAnimationFrame(animationFrameId)
+        }
+        window.removeEventListener('resize', resize)
+        window.removeEventListener('mousemove', handleMouseMove)
+        if (canvas.parentNode) {
+          canvas.parentNode.removeChild(canvas)
+        }
+      }
     })
   }
 }
