@@ -201,7 +201,7 @@
   justify-content: center;
   --smzk-hero-x: 0px;
   --smzk-hero-y: 0px;
-  --smzk-hero-scale: 1.12;
+  --smzk-hero-scale: 0.96;
   order: -1;
   margin-bottom: -8px;
 }
@@ -211,7 +211,7 @@
   .VPHome .VPHero .image-container {
     --smzk-hero-x: 0px;
     --smzk-hero-y: 0px;
-    --smzk-hero-scale: 1.22;
+    --smzk-hero-scale: 1.02;
   }
 }
 
@@ -222,6 +222,8 @@
   position: relative;
   display: block;
   z-index: 0;
+  width: min(320px, 70vw);
+  height: auto;
   transform: translate(var(--smzk-hero-x), var(--smzk-hero-y)) translateZ(0) scale(var(--smzk-hero-scale));
   transform-origin: center;
   filter: drop-shadow(0 22px 56px rgba(0, 0, 0, 0.6))
