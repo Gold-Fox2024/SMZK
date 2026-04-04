@@ -25,6 +25,8 @@ export default defineConfig({
   themeConfig: {
     siteTitle: false,
     outlineTitle: '本页精要',
+    returnToTopLabel: '返回顶部',
+    sidebarMenuLabel: '菜单',
     // 开启本地搜索
     search: {
       provider: 'local',
