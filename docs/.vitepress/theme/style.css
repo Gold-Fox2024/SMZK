@@ -76,6 +76,25 @@
 /* =========================================================
    3. 首页 LOGO增强：无方形边框的发光与对比
    ========================================================= */
+.VPHome .VPHero {
+  text-align: center;
+}
+
+.VPHome .VPHero .container {
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.VPHome .VPHero .main {
+  align-items: center;
+  max-width: 820px;
+}
+
+.VPHome .VPHero .actions {
+  justify-content: center;
+}
+
 .VPHome .VPHero .image,
 .VPHome .VPHero .image-container {
   position: relative;
@@ -84,15 +103,15 @@
   justify-content: center;
   --smzk-hero-x: 0px;
   --smzk-hero-y: 0px;
-  --smzk-hero-scale: 1.08;
+  --smzk-hero-scale: 1.12;
 }
 
 @media (min-width: 768px) {
   .VPHome .VPHero .image,
   .VPHome .VPHero .image-container {
-    --smzk-hero-x: -220px;
-    --smzk-hero-y: -140px;
-    --smzk-hero-scale: 1.16;
+    --smzk-hero-x: 0px;
+    --smzk-hero-y: 0px;
+    --smzk-hero-scale: 1.22;
   }
 }
 

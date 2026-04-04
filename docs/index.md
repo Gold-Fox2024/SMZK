@@ -2,8 +2,8 @@
 layout: home
 hero:
   name: "数模智库"
-  text: "Modeling the World"
-  tagline: "数学建模 × 编程实战 × 知识库"
+  text: "数学建模 × 编程实战 × 知识库"
+  tagline: "“用模型解释世界，用代码逼近答案”"
   image:
     src: /assets/smzk-hero.svg
     alt: SMZK Logo
@@ -28,10 +28,3 @@ features:
     details: 未来支持交互式图表与在线代码演练，让建模过程“动”起来。
     icon: 🧪
 ---
-
-<style>
-:root {
-  --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: linear-gradient(135deg, #4ade80 0%, #3b82f6 100%);
-}
-</style>
