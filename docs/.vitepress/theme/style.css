@@ -9,18 +9,32 @@
   
   /* 程序员风格字体 */
   --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+
+  --smzk-font-latin-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --smzk-font-zh-hand: 'HanziPen SC', 'YouYuan', 'STXingkai', 'KaiTi', 'STKaiti';
+  --smzk-font-cjk-sans: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei UI', 'Microsoft YaHei',
+    sans-serif;
+
+  --smzk-font-sans: var(--smzk-font-latin-sans), var(--smzk-font-cjk-sans);
+  --smzk-font-zh-display: var(--smzk-font-zh-hand), var(--smzk-font-cjk-sans);
+  --vp-font-family-base: var(--smzk-font-latin-sans), var(--smzk-font-zh-hand), var(--smzk-font-cjk-sans);
   
   /* 渐变与动画配置 */
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: linear-gradient(135deg, #4ade80 0%, #3b82f6 100%);
 
   --vp-c-bg: #0b0f19;
+  --vp-c-bg-alt: #0f172a;
+  --vp-c-bg-elv: #0f172a;
   --vp-c-bg-soft: #161d2b;
   --vp-c-bg-mute: #1e293b;
   --vp-c-text-1: #f8fafc;
   --vp-c-text-2: #94a3b8;
   --vp-grid-color: rgba(74, 222, 128, 0.05);
-  --vp-code-bg: #161d2b;
+  --vp-code-line-height: 1.8;
+  --vp-code-bg: var(--vp-c-bg-soft);
+  --vp-code-block-bg: #0f2036;
+  --vp-code-block-color: #dbeafe;
   --vp-code-line-number-color: #475569;
 
   color-scheme: dark;
@@ -32,9 +46,32 @@ body:has(.VPHome) {
   overflow: hidden;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 @media (min-width: 960px) {
   .VPNavBar .wrapper {
     position: relative;
+  }
+
+  .VPNavBar.has-sidebar .wrapper {
+    padding: 0 32px !important;
+  }
+
+  .VPNavBar.has-sidebar .container {
+    max-width: calc(var(--vp-layout-max-width) - 64px) !important;
+  }
+
+  .VPNavBar.has-sidebar .title {
+    position: static !important;
+    width: auto !important;
+    padding: 0 !important;
+  }
+
+  .VPNavBar.has-sidebar .content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   .VPNavBar .content-body {
@@ -50,7 +87,7 @@ body:has(.VPHome) {
 
   .VPNavBar .search {
     position: absolute;
-    right: 0;
+    right: 112px;
     top: 50%;
     transform: translateY(-50%);
   }
@@ -68,6 +105,18 @@ body:has(.VPHome) {
   transition: none !important;
   background-color: transparent !important;
   border-bottom: none !important;
+}
+
+.VPNavBar,
+.VPNavBar.top {
+  transition: none !important;
+}
+
+.VPNavBar:not(.home),
+.VPNavBar:not(.home).top {
+  background-color: rgba(11, 15, 25, 0.78) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(74, 222, 128, 0.14) !important;
 }
 
 .VPNavBar .divider {
@@ -110,6 +159,10 @@ body:has(.VPHome) {
   color: var(--vp-c-text-2);
 }
 
+.VPNavBar:not(.home) .smzk-plaque {
+  display: none !important;
+}
+
 .smzk-plaque .url {
   color: var(--vp-c-brand-light);
 }
@@ -121,6 +174,10 @@ body:has(.VPHome) {
   background-image: radial-gradient(circle at 2px 2px, var(--vp-grid-color) 1px, transparent 0);
   background-size: 40px 40px;
   height: 100vh;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  position: relative;
   overflow: hidden;
 }
 
@@ -141,6 +198,18 @@ body:has(.VPHome) {
    ========================================================= */
 .VPHome .VPHero {
   text-align: center;
+  box-sizing: border-box;
+  margin-top: 0 !important;
+  padding: 0 24px !important;
+  font-family: var(--smzk-font-sans);
+}
+
+.VPHome .VPHomeHero {
+  position: absolute;
+  top: calc(50% - 72px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
 
 .VPHome .VPHero .container {
@@ -148,14 +217,19 @@ body:has(.VPHome) {
   flex-direction: column;
   align-items: center;
   gap: 18px;
-  min-height: calc(100vh - var(--vp-nav-height));
+  min-height: 0;
   justify-content: center;
-  padding-top: 2vh;
+  padding-top: 0;
+  text-align: center;
 }
 
 .VPHome .VPHero .main {
   align-items: center;
   max-width: 820px;
+}
+
+.VPHome .VPHero .heading {
+  align-items: center;
 }
 
 .VPHome .VPHero .actions {
@@ -164,24 +238,51 @@ body:has(.VPHome) {
   justify-content: center !important;
   align-items: center;
   gap: 12px;
-  margin-top: 14px;
+  margin-top: 10px;
   position: relative;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 14px;
+  padding-top: 0;
 }
 
 .VPHome .VPHero .actions::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: min(420px, 72vw);
-  height: 1px;
-  transform: translateX(-50%);
-  background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.55), rgba(59, 130, 246, 0.45), transparent);
-  opacity: 0.85;
+  content: none;
+}
+
+.VPHome .VPHero .actions .action {
+  padding: 0;
+}
+
+.VPHome .VPHero .actions .action .VPButton {
+  border-radius: 16px !important;
+  border: 4px solid #000 !important;
+  box-shadow: none !important;
+  font-family: var(--smzk-font-sans);
+  letter-spacing: 0.02em;
+  font-weight: 900 !important;
+  padding: 0 28px !important;
+  line-height: 46px !important;
+  font-size: 16px !important;
+  min-width: 140px;
+}
+
+.VPHome .VPHero .actions .action:nth-child(1) .VPButton {
+  background: #4ade80 !important;
+  color: #000 !important;
+}
+
+.VPHome .VPHero .actions .action:nth-child(2) .VPButton {
+  background: #1e40af !important;
+  color: #fff !important;
+}
+
+.VPHome .VPHero .actions .action:nth-child(1) .VPButton:hover {
+  background: #22c55e !important;
+}
+
+.VPHome .VPHero .actions .action:nth-child(2) .VPButton:hover {
+  background: #1d4ed8 !important;
 }
 
 @media (min-width: 640px) {
@@ -191,12 +292,25 @@ body:has(.VPHome) {
 }
 
 .VPHome .VPHero .tagline {
-  font-family: var(--vp-font-family-mono);
+  font-family: var(--vp-font-family-base);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 12px;
   opacity: 0.85;
   margin-top: -6px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.VPHome .VPHero .tagline::after {
+  content: "";
+  display: block;
+  width: min(420px, 72vw);
+  height: 1px;
+  margin: 14px auto 0;
+  background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.55), rgba(59, 130, 246, 0.45), transparent);
+  opacity: 0.85;
 }
 
 .VPHome .VPHero .name {
@@ -208,6 +322,7 @@ body:has(.VPHome) {
   filter: drop-shadow(0 0 18px rgba(74, 222, 128, 0.18));
   line-height: 1.25;
   padding: 0.14em 0 0.06em;
+  font-family: var(--smzk-font-zh-display);
 }
 
 .VPHome .VPHero .image,
@@ -217,32 +332,79 @@ body:has(.VPHome) {
   align-items: center;
   justify-content: center;
   --smzk-hero-x: 0px;
-  --smzk-hero-y: 0px;
+  --smzk-hero-y: -10px;
   --smzk-hero-scale: 0.96;
   order: -1;
   margin-bottom: -8px;
 }
 
+.VPHome .VPHero .image-container {
+  margin-left: var(--smzk-hero-x);
+  margin-top: var(--smzk-hero-y);
+}
+
 @media (min-width: 768px) {
+  .VPHome .VPHero .container {
+    height: auto;
+  }
+
+  .VPHome .VPHero .image {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    order: -1;
+    margin: 0 auto 10px !important;
+    z-index: 1;
+  }
+
+  .VPHome .VPHero .main {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: min(820px, 92vw);
+    max-width: none;
+    z-index: 2;
+  }
+
+  .VPHome .VPHero .actions {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    margin-top: 18px;
+    z-index: 2;
+  }
+
   .VPHome .VPHero .image,
   .VPHome .VPHero .image-container {
     --smzk-hero-x: 0px;
-    --smzk-hero-y: -84px;
+    --smzk-hero-y: -200px;
     --smzk-hero-scale: 1.02;
+  }
+
+  .VPHome .VPHero.has-image .container {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 }
 
-.VPHome .VPHero .image img,
+@media (min-width: 960px) {
+  .VPHome .VPHero .image-container {
+    transform: none !important;
+  }
+}
+
 .VPHome .VPHero .image .image-src,
-.VPHome .VPHero .image-container img,
 .VPHome .VPHero .image-container .image-src {
-  position: relative;
   display: block;
   z-index: 0;
-  width: min(280px, 62vw);
+  width: min(440px, 84vw) !important;
+  max-width: none !important;
+  max-height: none !important;
   height: auto;
-  transform: translate(var(--smzk-hero-x), var(--smzk-hero-y)) translateZ(0) scale(var(--smzk-hero-scale));
-  transform-origin: center;
   filter: drop-shadow(0 22px 56px rgba(0, 0, 0, 0.6))
     drop-shadow(0 0 28px rgba(74, 222, 128, 0.24))
     drop-shadow(0 0 34px rgba(59, 130, 246, 0.18));
@@ -264,10 +426,11 @@ div[class*="language-"] {
   position: relative;
   border-radius: 12px !important;
   padding-top: 36px !important;
-  background-color: var(--vp-code-bg) !important;
-  border: 1px solid var(--vp-c-bg-mute);
+  background-color: var(--vp-code-block-bg) !important;
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(0, 0, 0, 0));
+  border: 1px solid rgba(148, 163, 184, 0.24);
   margin: 2em 0;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(74, 222, 128, 0.14);
   overflow: hidden;
 }
 
@@ -290,6 +453,15 @@ div[class*="language-"]::before {
   background: transparent !important;
   margin: 0 !important;
   padding: 12px 0 !important;
+  line-height: var(--vp-code-line-height) !important;
+}
+
+.vp-doc [class*="language-"] pre.vp-code {
+  filter: saturate(1.4) contrast(1.1) brightness(1.2);
+}
+
+.vp-doc [class*="language-"] code {
+  line-height: inherit;
 }
 
 /* 行号美化 */
@@ -297,8 +469,17 @@ div[class*="language-"]::before {
   border-right: 1px solid var(--vp-c-bg-mute);
   color: var(--vp-code-line-number-color);
   padding-top: 48px !important; /* 36px (Mac 栏) + 12px (代码内间距) */
-  line-height: 1.8;
+  line-height: var(--vp-code-line-height);
   font-family: var(--vp-font-family-mono);
+}
+
+.vp-doc [class*="language-"] .line-numbers-wrapper .line-number {
+  display: block;
+  line-height: var(--vp-code-line-height);
+}
+
+.vp-code span {
+  color: var(--shiki-dark, inherit) !important;
 }
 
 /* =========================================================
@@ -354,6 +535,23 @@ div[class*="language-"]::before {
   content: "📄";
   margin-right: 8px;
   opacity: 0.5;
+}
+
+.VPSidebar {
+  background: var(--vp-c-bg-alt) !important;
+  position: relative;
+}
+
+.VPSidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, rgba(74, 222, 128, 0.55), rgba(59, 130, 246, 0.45), transparent);
+  box-shadow: 0 0 14px rgba(74, 222, 128, 0.18);
+  pointer-events: none;
 }
 
 /* =========================================================

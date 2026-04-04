@@ -8,9 +8,9 @@ hero:
     alt: SMZK Logo
   actions:
     - theme: brand
-      text: 🚀 立即开始
+      text: 立即开始
       link: /models/evaluation/ahp
     - theme: alt
-      text: 💻 GitHub 仓库
+      text: GitHub 仓库
       link: https://github.com/Gold-Fox2024/SMZK
 ---
