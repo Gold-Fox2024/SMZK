@@ -40,22 +40,8 @@
   color-scheme: dark;
 }
 
-html:has(.VPHome),
-body:has(.VPHome) {
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
 html {
   scrollbar-gutter: stable;
-  overflow-x: hidden;
-  overscroll-behavior-x: none;
-}
-
-body {
-  overflow-x: hidden;
-  overscroll-behavior-x: none;
 }
 
 @media (min-width: 960px) {
@@ -418,80 +404,6 @@ body {
   }
 }
 
-@media (max-width: 959px) {
-  .VPNavBar .content-body {
-    position: relative;
-  }
-
-  .VPNavBar .title {
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: auto;
-    z-index: 2;
-  }
-
-  .VPNavBar .title .title {
-    justify-content: flex-start;
-  }
-
-  .VPNavBar .title a {
-    pointer-events: auto;
-  }
-
-  .VPHome .VPHomeHero {
-    top: calc(50% - 96px);
-  }
-
-  .VPHome .VPHero.has-image .container {
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  .VPHome .VPHero .image {
-    order: -1 !important;
-    margin: 0 auto !important;
-  }
-
-  .VPHome .VPHero .image,
-  .VPHome .VPHero .image-container {
-    width: 100%;
-    justify-content: center;
-    overflow-x: hidden;
-    --smzk-hero-x: 0px;
-    --smzk-hero-y: -56px;
-  }
-
-  .VPHome .VPHero .actions {
-    width: min(100%, 520px);
-  }
-
-  .VPHome .VPHero .actions .action .VPButton {
-    min-width: 0;
-  }
-
-  .VPHome .VPHero .image-container {
-    margin-left: auto !important;
-    margin-right: auto !important;
-    margin-top: var(--smzk-hero-y) !important;
-  }
-
-  .VPHome .VPHero .main,
-  .VPHome .VPHero .heading {
-    width: 100%;
-    align-items: center !important;
-    text-align: center !important;
-  }
-
-  .smzk-plaque {
-    display: none;
-  }
-}
-
 .VPHome .VPHero .image .image-src,
 .VPHome .VPHero .image-container .image-src {
   display: block;
@@ -503,24 +415,6 @@ body {
   filter: drop-shadow(0 22px 56px rgba(0, 0, 0, 0.6))
     drop-shadow(0 0 28px rgba(74, 222, 128, 0.24))
     drop-shadow(0 0 34px rgba(59, 130, 246, 0.18));
-}
-
-@media (max-width: 640px) {
-  .VPHome .VPHero .image .image-src,
-  .VPHome .VPHero .image-container .image-src {
-    width: min(320px, 72vw) !important;
-    max-width: 320px !important;
-  }
-
-  .VPHome .VPHero .image img,
-  .VPHome .VPHero .image .image-src,
-  .VPHome .VPHero .image-container img,
-  .VPHome .VPHero .image-container .image-src {
-    transform: translate(0px, 0px) translateZ(0) scale(1);
-    -webkit-user-drag: none;
-    user-select: none;
-    touch-action: manipulation;
-  }
 }
 
 /* =========================================================
