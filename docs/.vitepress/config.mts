@@ -10,7 +10,6 @@ export default defineConfig({
   appearance: false,
 
   head: [
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['meta', { name: 'keywords', content: '数学建模, 数模, 建模, Python, MATLAB, 算法, 评价模型, 优化模型' }],
     ['meta', { name: 'author', content: 'Gold-Fox2024' }]
   ],
