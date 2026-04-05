@@ -519,13 +519,11 @@ div[class*="language-"]::before {
 
 .vp-doc .smzk-accent {
   display: inline;
-  font-size: inherit;
-  line-height: inherit;
-  font-weight: inherit;
   background: linear-gradient(120deg, #4ade80, #60a5fa);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-weight: 800;
 }
 
 .vp-doc a.smzk-accent {
