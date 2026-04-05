@@ -4,7 +4,7 @@
   <g font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">
     <g>
       <rect x="420" y="40" width="160" height="80" rx="10" fill="#fbbf24"/>
-      <text x="500" y="92" font-size="34" font-weight="800" fill="#0b0f19">目标</text>
+      <text x="500" y="92" font-size="34" font-weight="800" fill="#ffffff">目标</text>
     </g>
 
     <g>
@@ -27,7 +27,7 @@
       <text x="610" y="418" font-size="34" font-weight="800" fill="#ffffff">方案B</text>
     </g>
 
-    <g stroke="#111827" stroke-width="2" fill="none" stroke-linecap="round">
+    <g stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round">
       <line x1="500" y1="120" x2="195" y2="190"/>
       <line x1="500" y1="120" x2="395" y2="190"/>
       <line x1="500" y1="120" x2="595" y2="190"/>
@@ -44,7 +44,7 @@
       <line x1="795" y1="270" x2="610" y2="360"/>
     </g>
 
-    <g font-size="28" fill="#111827" text-anchor="start">
+    <g font-size="28" fill="#ffffff" text-anchor="start">
       <text x="900" y="95" font-weight="800">目标层</text>
       <text x="900" y="245" font-weight="800">准则层</text>
       <text x="900" y="420" font-weight="800">方案层</text>
