@@ -526,14 +526,6 @@ div[class*="language-"]::before {
   font-weight: 800;
 }
 
-.vp-doc a.smzk-accent {
-  text-decoration: none;
-}
-
-.vp-doc p.smzk-no-justify {
-  text-align: left;
-}
-
 .vp-doc figure.smzk-figure {
   margin: 16px auto;
   max-width: 940px;
