@@ -2,6 +2,7 @@
   <rect x="0" y="0" width="1000" height="520" fill="transparent"/>
 
   <g font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" text-anchor="middle">
+    <g transform="translate(-40 0)">
     <g>
       <rect x="420" y="40" width="160" height="80" rx="10" fill="#fbbf24"/>
       <text x="500" y="92" font-size="34" font-weight="800" fill="#ffffff">目标</text>
@@ -42,6 +43,7 @@
       <line x1="395" y1="270" x2="610" y2="360"/>
       <line x1="595" y1="270" x2="610" y2="360"/>
       <line x1="795" y1="270" x2="610" y2="360"/>
+    </g>
     </g>
 
     <g font-size="28" fill="#ffffff" text-anchor="start">
