@@ -526,6 +526,25 @@ div[class*="language-"]::before {
   font-weight: 800;
 }
 
+.vp-doc figure.smzk-figure {
+  margin: 16px auto;
+  max-width: 940px;
+}
+
+.vp-doc figure.smzk-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.vp-doc figure.smzk-figure figcaption {
+  margin-top: 10px;
+  text-align: center;
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
 .vp-doc p {
   line-height: 1.8;
   margin-bottom: 1.2em;
