@@ -518,12 +518,22 @@ div[class*="language-"]::before {
 }
 
 .vp-doc .smzk-accent {
-  display: inline-block;
+  display: inline;
   background: linear-gradient(120deg, #4ade80, #60a5fa);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
+}
+
+.vp-doc a.smzk-accent {
+  text-decoration: none;
+}
+
+.vp-doc .smzk-figref-line {
+  text-align: left;
+  text-justify: auto;
+  word-spacing: 0;
 }
 
 .vp-doc figure.smzk-figure {
