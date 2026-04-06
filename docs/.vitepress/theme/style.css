@@ -573,6 +573,11 @@ div[class*="language-"]::before {
   text-align: justify;
 }
 
+/* 强制全站正文元素使用手写字体（包括各级标题、段落、列表、引用） */
+body, .vp-doc, .vp-doc p, .vp-doc li, .vp-doc h1, .vp-doc h2, .vp-doc h3, .vp-doc h4, .vp-doc h5, .vp-doc h6, .vp-doc blockquote {
+  font-family: var(--smzk-font-sans) !important;
+}
+
 /* 仅在宽屏显示首行缩进 */
 @media (min-width: 960px) {
   .vp-doc p:not(:has(.mjx-container)) {
