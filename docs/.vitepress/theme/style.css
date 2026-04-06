@@ -566,7 +566,13 @@ div[class*="language-"]::before {
 }
 
 /* 强制全站正文元素使用手写字体（包括各级标题、段落、列表、引用），并调大基础字号 */
-body, .vp-doc, .vp-doc p, .vp-doc li, .vp-doc h1, .vp-doc h2, .vp-doc h3, .vp-doc h4, .vp-doc h5, .vp-doc h6, .vp-doc blockquote {
+body, .vp-doc, .vp-doc p, .vp-doc li, .vp-doc h1, .vp-doc h2, .vp-doc h3, .vp-doc h4, .vp-doc h5, .vp-doc h6, .vp-doc blockquote, 
+.DocSearch-Button, .DocSearch-Form, .DocSearch-Input, .DocSearch-Hit-title, .DocSearch-Hit-path {
+  font-family: var(--smzk-font-sans) !important;
+}
+
+/* 强制覆盖搜索框及其他 UI 组件（包括本地搜索的特殊类） */
+.VPLocalSearchBox, .VPLocalSearchBox input, .VPLocalSearchBox button, .VPLocalSearchBox .result-title, .VPLocalSearchBox .result-excerpt {
   font-family: var(--smzk-font-sans) !important;
 }
 
