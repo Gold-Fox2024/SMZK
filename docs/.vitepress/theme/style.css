@@ -41,6 +41,23 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* 禁用全站文本选择与拖拽，防止意外的编辑态或全选干扰 */
+body {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+  -webkit-user-drag: none;
+}
+
+/* 允许代码块和搜索输入框可被选中/复制/编辑 */
+pre, code, .vp-code, .vp-doc [class*="language-"], .DocSearch-Input, .VPLocalSearchBox input {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 @media (min-width: 960px) {
   html:has(.VPHome),
   body:has(.VPHome) {
