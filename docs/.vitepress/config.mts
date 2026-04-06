@@ -12,9 +12,7 @@ export default defineConfig({
   head: [
     ['meta', { name: 'keywords', content: '数学建模, 数模, 建模, Python, MATLAB, 算法, 评价模型, 优化模型' }],
     ['meta', { name: 'author', content: 'Gold-Fox2024' }],
-    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
-    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
-    ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap' }]
+    ['link', { rel: 'stylesheet', href: 'https://fonts.loli.net/css2?family=ZCOOL+KuaiLe&display=swap' }]
   ],
 
   // 数学公式支持

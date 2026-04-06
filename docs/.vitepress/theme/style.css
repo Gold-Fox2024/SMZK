@@ -10,16 +10,8 @@
   /* 程序员风格字体 */
   --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
 
-  --smzk-font-latin-sans: 'Comic Sans MS', 'Chalkboard SE', 'Fredoka One', system-ui, sans-serif;
-  --smzk-font-zh-hand: 'ZCOOL KuaiLe', 'HanziPen SC', '翩翩体-简', 'YouYuan', '幼圆', 'STXingkai', '华文行楷', 'KaiTi', '楷体', 'STKaiti';
-  --smzk-font-cjk-sans: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei UI', 'Microsoft YaHei',
-    sans-serif;
-
-  /* 全局英中混排：英文在前（手写），中文在后（手写为主，无手写则降级到无衬线） */
-  --smzk-font-sans: var(--smzk-font-latin-sans), var(--smzk-font-zh-hand), var(--smzk-font-cjk-sans);
-  
-  /* 大标题专属：同样英文优先，中文强调手写 */
-  --smzk-font-zh-display: var(--smzk-font-latin-sans), var(--smzk-font-zh-hand), var(--smzk-font-cjk-sans);
+  /* 极致精简字体栈：强制优先使用 Web Font (ZCOOL KuaiLe) */
+  --smzk-font-sans: 'ZCOOL KuaiLe', 'Comic Sans MS', cursive, sans-serif;
   
   /* 覆盖 VitePress 默认字体 */
   --vp-font-family-base: var(--smzk-font-sans);
@@ -357,7 +349,7 @@ html {
   filter: drop-shadow(0 0 24px rgba(96, 165, 250, 0.3));
   line-height: 1.25;
   padding: 0.14em 0 0.06em;
-  font-family: var(--smzk-font-zh-display);
+  font-family: var(--smzk-font-sans);
 }
 
 .VPHome .VPHero .image,
