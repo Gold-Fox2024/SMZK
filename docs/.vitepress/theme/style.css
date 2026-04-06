@@ -278,36 +278,41 @@ html {
 
 .VPHome .VPHero .actions .action .VPButton {
   border-radius: 16px !important;
-  border: 4px solid #000 !important;
+  border: 2px solid transparent !important;
   box-shadow: none !important;
   font-family: var(--smzk-font-sans);
   letter-spacing: 0.02em;
   font-weight: 900 !important;
   padding: 0 28px !important;
-  line-height: 46px !important;
+  line-height: 48px !important;
   font-size: 16px !important;
   min-width: 140px;
+  transition: all 0.3s ease !important;
 }
 
 .VPHome .VPHero .actions .action:nth-child(1) .VPButton {
   background: #60a5fa !important;
   color: #0b0f19 !important;
-  box-shadow: 0 0 20px rgba(96, 165, 250, 0.3) !important;
+  border-color: #93c5fd !important;
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.4) !important;
 }
 
 .VPHome .VPHero .actions .action:nth-child(2) .VPButton {
-  background: #1e1b4b !important;
+  background: rgba(30, 27, 75, 0.5) !important;
   color: #e0e7ff !important;
-  border-color: #312e81 !important;
+  border-color: #4338ca !important;
+  backdrop-filter: blur(8px);
 }
 
 .VPHome .VPHero .actions .action:nth-child(1) .VPButton:hover {
   background: #93c5fd !important;
-  box-shadow: 0 0 30px rgba(96, 165, 250, 0.5) !important;
+  border-color: #bfdbfe !important;
+  box-shadow: 0 0 30px rgba(96, 165, 250, 0.6) !important;
 }
 
 .VPHome .VPHero .actions .action:nth-child(2) .VPButton:hover {
-  background: #312e81 !important;
+  background: rgba(49, 46, 129, 0.8) !important;
+  border-color: #6366f1 !important;
 }
 
 @media (min-width: 640px) {
