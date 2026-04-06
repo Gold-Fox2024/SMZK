@@ -10,8 +10,8 @@
   /* 程序员风格字体 */
   --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
 
-  /* 优雅的星空童话字体组合：Nunito (英文圆润) + Zhi Mang Xing (中文行书/手写) */
-  --smzk-font-sans: 'Nunito', 'Zhi Mang Xing', 'Comic Sans MS', cursive, sans-serif;
+  /* 极致精简字体栈：强制优先使用 Web Font (ZCOOL KuaiLe) */
+  --smzk-font-sans: 'ZCOOL KuaiLe', 'Comic Sans MS', cursive, sans-serif;
   
   /* 覆盖 VitePress 默认字体 */
   --vp-font-family-base: var(--smzk-font-sans);
@@ -568,7 +568,6 @@ div[class*="language-"]::before {
 /* 强制全站正文元素使用手写字体（包括各级标题、段落、列表、引用） */
 body, .vp-doc, .vp-doc p, .vp-doc li, .vp-doc h1, .vp-doc h2, .vp-doc h3, .vp-doc h4, .vp-doc h5, .vp-doc h6, .vp-doc blockquote {
   font-family: var(--smzk-font-sans) !important;
-  letter-spacing: 0.05em; /* 手写/行书字体适当增加字间距 */
 }
 
 /* 仅在宽屏显示首行缩进 */
