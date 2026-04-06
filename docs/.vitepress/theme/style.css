@@ -3,9 +3,9 @@
    ========================================================= */
 :root {
   /* 核心品牌色 */
-  --vp-c-brand: #4ade80;        /* 科技绿 */
-  --vp-c-brand-dark: #22c55e;
-  --vp-c-brand-light: #86efac;
+  --vp-c-brand: #60a5fa;        /* 星空蓝 */
+  --vp-c-brand-dark: #3b82f6;
+  --vp-c-brand-light: #93c5fd;
   
   /* 程序员风格字体 */
   --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
@@ -21,7 +21,7 @@
   
   /* 渐变与动画配置 */
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: linear-gradient(135deg, #4ade80 0%, #3b82f6 100%);
+  --vp-home-hero-name-background: linear-gradient(135deg, #60a5fa 0%, #c084fc 100%);
 
   --vp-c-bg: #0b0f19;
   --vp-c-bg-alt: #0f172a;
@@ -30,7 +30,7 @@
   --vp-c-bg-mute: #1e293b;
   --vp-c-text-1: #f8fafc;
   --vp-c-text-2: #94a3b8;
-  --vp-grid-color: rgba(74, 222, 128, 0.05);
+  --vp-grid-color: rgba(96, 165, 250, 0.05);
   --vp-code-line-height: 1.8;
   --vp-code-bg: var(--vp-c-bg-soft);
   --vp-code-block-bg: #0f2036;
@@ -184,8 +184,7 @@ html {
    2. 首页视觉交互
    ========================================================= */
 .VPHome {
-  background-image: radial-gradient(circle at 2px 2px, var(--vp-grid-color) 1px, transparent 0);
-  background-size: 40px 40px;
+  background: radial-gradient(ellipse at top, #0f172a 0%, #0b0f19 100%);
   height: 100vh;
   margin-bottom: 0 !important;
   padding-top: 0 !important;
@@ -201,7 +200,7 @@ html {
 
 .VPHero .name {
   animation: rainbow 10s linear infinite;
-  filter: drop-shadow(0 0 20px rgba(74, 222, 128, 0.3));
+  filter: drop-shadow(0 0 24px rgba(96, 165, 250, 0.4));
   font-family: var(--vp-font-family-mono);
   letter-spacing: -2px;
 }
@@ -291,21 +290,24 @@ html {
 }
 
 .VPHome .VPHero .actions .action:nth-child(1) .VPButton {
-  background: #4ade80 !important;
-  color: #000 !important;
+  background: #60a5fa !important;
+  color: #0b0f19 !important;
+  box-shadow: 0 0 20px rgba(96, 165, 250, 0.3) !important;
 }
 
 .VPHome .VPHero .actions .action:nth-child(2) .VPButton {
-  background: #1e40af !important;
-  color: #fff !important;
+  background: #1e1b4b !important;
+  color: #e0e7ff !important;
+  border-color: #312e81 !important;
 }
 
 .VPHome .VPHero .actions .action:nth-child(1) .VPButton:hover {
-  background: #22c55e !important;
+  background: #93c5fd !important;
+  box-shadow: 0 0 30px rgba(96, 165, 250, 0.5) !important;
 }
 
 .VPHome .VPHero .actions .action:nth-child(2) .VPButton:hover {
-  background: #1d4ed8 !important;
+  background: #312e81 !important;
 }
 
 @media (min-width: 640px) {
@@ -332,7 +334,7 @@ html {
   width: min(420px, 72vw);
   height: 1px;
   margin: 14px auto 0;
-  background: linear-gradient(90deg, transparent, rgba(74, 222, 128, 0.55), rgba(59, 130, 246, 0.45), transparent);
+  background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.55), rgba(192, 132, 252, 0.45), transparent);
   opacity: 0.85;
 }
 
@@ -342,7 +344,7 @@ html {
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  filter: drop-shadow(0 0 18px rgba(74, 222, 128, 0.18));
+  filter: drop-shadow(0 0 24px rgba(96, 165, 250, 0.3));
   line-height: 1.25;
   padding: 0.14em 0 0.06em;
   font-family: var(--smzk-font-zh-display);
@@ -428,9 +430,9 @@ html {
   max-width: none !important;
   max-height: none !important;
   height: auto;
-  filter: drop-shadow(0 22px 56px rgba(0, 0, 0, 0.6))
-    drop-shadow(0 0 28px rgba(74, 222, 128, 0.24))
-    drop-shadow(0 0 34px rgba(59, 130, 246, 0.18));
+  filter: drop-shadow(0 22px 56px rgba(0, 0, 0, 0.8))
+    drop-shadow(0 0 28px rgba(96, 165, 250, 0.3))
+    drop-shadow(0 0 34px rgba(192, 132, 252, 0.2));
 }
 
 /* =========================================================
@@ -499,7 +501,7 @@ div[class*="language-"]::before {
    5. 正文排版与标题
    ========================================================= */
 .vp-doc h1 {
-  background: linear-gradient(120deg, #4ade80, #3b82f6);
+  background: linear-gradient(120deg, #60a5fa, #c084fc);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -519,7 +521,7 @@ div[class*="language-"]::before {
 
 .vp-doc .smzk-accent {
   display: inline;
-  background: linear-gradient(120deg, #4ade80, #60a5fa);
+  background: linear-gradient(120deg, #60a5fa, #c084fc);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

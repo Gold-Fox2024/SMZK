@@ -106,45 +106,56 @@ export default {
         constructor() {
           this.x = Math.random() * width
           this.y = Math.random() * height
-          this.size = Math.random() * 2 + 1
-          this.baseX = this.x
-          this.baseY = this.y
-          this.density = (Math.random() * 30) + 1
+          this.size = Math.random() * 1.5 + 0.5
+          this.speedX = Math.random() * 0.5 - 0.25
+          this.speedY = Math.random() * 0.5 - 0.25
+          const colors = ['rgba(255,255,255,0.8)', 'rgba(147,197,253,0.6)', 'rgba(196,181,253,0.6)']
+          this.color = colors[Math.floor(Math.random() * colors.length)]
         }
 
         draw() {
-          ctx.fillStyle = 'rgba(74, 222, 128, 0.5)'
+          ctx.fillStyle = this.color
           ctx.beginPath()
           ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-          ctx.closePath()
           ctx.fill()
         }
 
         update() {
-          if (mouse.x === null || mouse.y === null) return
+          this.x += this.speedX
+          this.y += this.speedY
 
-          let dx = mouse.x - this.x
-          let dy = mouse.y - this.y
-          let distance = Math.sqrt(dx * dx + dy * dy)
-          if (distance < 0.001) return
-          let forceDirectionX = dx / distance
-          let forceDirectionY = dy / distance
-          let maxDistance = mouse.radius
-          let force = (maxDistance - distance) / maxDistance
-          let directionX = forceDirectionX * force * this.density
-          let directionY = forceDirectionY * force * this.density
+          if (this.x > width) this.x = 0
+          else if (this.x < 0) this.x = width
+          if (this.y > height) this.y = 0
+          else if (this.y < 0) this.y = height
 
-          if (distance < mouse.radius) {
-            this.x += directionX
-            this.y += directionY
-          } else {
-            if (this.x !== this.baseX) {
-              let dx = this.x - this.baseX
-              this.x -= dx / 10
+          if (mouse.x !== null && mouse.y !== null) {
+            let dx = mouse.x - this.x
+            let dy = mouse.y - this.y
+            let distance = Math.sqrt(dx * dx + dy * dy)
+            if (distance < 120) {
+              this.x -= dx * 0.02
+              this.y -= dy * 0.02
             }
-            if (this.y !== this.baseY) {
-              let dy = this.y - this.baseY
-              this.y -= dy / 10
+          }
+        }
+      }
+
+      function connect() {
+        let opacityValue = 1
+        for (let a = 0; a < particles.length; a++) {
+          for (let b = a; b < particles.length; b++) {
+            let dx = particles[a].x - particles[b].x
+            let dy = particles[a].y - particles[b].y
+            let distance = dx * dx + dy * dy
+            if (distance < 12000) {
+              opacityValue = 1 - (distance / 12000)
+              ctx.strokeStyle = `rgba(147, 197, 253, ${opacityValue * 0.25})`
+              ctx.lineWidth = 1
+              ctx.beginPath()
+              ctx.moveTo(particles[a].x, particles[a].y)
+              ctx.lineTo(particles[b].x, particles[b].y)
+              ctx.stroke()
             }
           }
         }
@@ -152,7 +163,8 @@ export default {
 
       function init() {
         particles = []
-        for (let i = 0; i < 100; i++) {
+        let particleCount = Math.min(Math.floor((width * height) / 12000), 150)
+        for (let i = 0; i < particleCount; i++) {
           particles.push(new Particle())
         }
       }
@@ -163,6 +175,7 @@ export default {
           particles[i].draw()
           particles[i].update()
         }
+        connect()
         animationFrameId = requestAnimationFrame(animate)
       }
 
