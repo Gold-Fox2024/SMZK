@@ -7,8 +7,8 @@
   --vp-c-brand-dark: #3b82f6;
   --vp-c-brand-light: #93c5fd;
   
-  /* 程序员风格字体 */
-  --vp-font-family-mono: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+  /* 程序员风格字体（英文等宽 + 中文手写/童话 fallback） */
+  --vp-font-family-mono: 'Fira Code', 'JetBrains Mono', 'Courier New', 'ZCOOL KuaiLe', monospace;
 
   /* 极致精简字体栈：英文强制使用 Comic Sans 系列，中文回退到 ZCOOL KuaiLe */
   --smzk-font-sans: 'Comic Sans MS', 'Chalkboard SE', 'Fredoka One', 'ZCOOL KuaiLe', cursive, sans-serif;
