@@ -10,8 +10,8 @@
   /* 程序员风格字体 */
   --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
 
-  /* 极致精简字体栈：强制优先使用 Web Font (ZCOOL KuaiLe) */
-  --smzk-font-sans: 'ZCOOL KuaiLe', 'Comic Sans MS', cursive, sans-serif;
+  /* 极致精简字体栈：英文强制使用 Comic Sans 系列，中文回退到 ZCOOL KuaiLe */
+  --smzk-font-sans: 'Comic Sans MS', 'Chalkboard SE', 'Fredoka One', 'ZCOOL KuaiLe', cursive, sans-serif;
   
   /* 覆盖 VitePress 默认字体 */
   --vp-font-family-base: var(--smzk-font-sans);
@@ -565,9 +565,21 @@ div[class*="language-"]::before {
   text-align: justify;
 }
 
-/* 强制全站正文元素使用手写字体（包括各级标题、段落、列表、引用） */
+/* 强制全站正文元素使用手写字体（包括各级标题、段落、列表、引用），并调大基础字号 */
 body, .vp-doc, .vp-doc p, .vp-doc li, .vp-doc h1, .vp-doc h2, .vp-doc h3, .vp-doc h4, .vp-doc h5, .vp-doc h6, .vp-doc blockquote {
   font-family: var(--smzk-font-sans) !important;
+}
+
+.vp-doc {
+  font-size: 18px; /* 调大正文基础字号，增强童话手写字的易读性 */
+}
+
+/* 侧边栏和导航栏也适当调大一点 */
+.VPSidebarItem .text {
+  font-size: 15px !important;
+}
+.VPNavBarMenuLink {
+  font-size: 15px !important;
 }
 
 /* 仅在宽屏显示首行缩进 */
