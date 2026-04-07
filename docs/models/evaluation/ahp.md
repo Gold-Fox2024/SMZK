@@ -70,10 +70,11 @@ $$
 </details>
 
 ::: tip 提示
-两两比较的过程中因为忽略了其他因素，导致最后的结果会产生常理上的矛盾，所以需要<a class="smzk-accent" href="#fig-ahp-hierarchy">一致性检验</a>。（防止某个因素既重要又不重要）
+两两比较的过程中因为忽略了其他因素，导致最后的结果会产生常理上的矛盾，所以需要<a class="smzk-accent" href="#sec-ahp-consistency">一致性检验</a>。（防止某个因素既重要又不重要）
 - 例如，第1个因素比第2个因素明显重要，第2个因素比第3个因素明显重要，第3个因素比第1个因素明显重要。但其实如果前两句成立，第三句一定不成立，就会产生矛盾。
 :::
 
+<a id="sec-ahp-consistency"></a>
 ### 第3步：一致性检验
 在解释一致性检验的原理前，我们先要介绍两个矩阵：正互反矩阵和一致矩阵。
 - **正互反矩阵**：若在矩阵 $A = (a_{ij})_{n \times n}$ 中，每个元素 $a_{ij} > 0$ 满足：
@@ -83,7 +84,7 @@ $$
 我们称该矩阵为正互反矩阵。在层次分析法中，我们构造的判断矩阵都是正互反矩阵。
 - **一致矩阵**：若在正互反矩阵 $A = (a_{ij})_{n \times n}$ 中，满足：
 $$
-a_{ij} \cdot a_{jk}=a_{ik},\quad \forall\, i,j,k\in\{1,2,\ldots,n\}
+a_{ij}a_{jk}=a_{ik},\quad \forall\, i,j,k\in\{1,2,\ldots,n\}
 $$
 我们称该矩阵为一致矩阵。
 
@@ -114,7 +115,7 @@ $$
   
   设矩阵 $A=(a_{ij})_{n\times n}$ 为一致矩阵。由一致矩阵的定义，$A$ 为正互反矩阵且满足
   $$
-  a_{ij} \cdot a_{jk}=a_{ik},\quad \forall\, i,j,k\in\{1,2,\ldots,n\}
+  a_{ij}a_{jk}=a_{ik},\quad \forall\, i,j,k\in\{1,2,\ldots,n\}
   $$
   
   首先，由于 $A$ 为正互反矩阵，显然有 $a_{ij}>0,\quad \forall\, i,j\in\{1,2,\ldots,n\}$
@@ -129,11 +130,11 @@ $$
   $$
   a_{ij}=\frac{a_{i1}}{a_{j1}},\quad \forall\, i,j\in\{1,2,\ldots,n\}
   $$
-  特别地，取 $i=1$，得 $a_{1j}=\dfrac{1}{a_{j1}}$ 代回上式，
+  特别地，取 $i=1$，得 $a_{1j}=\dfrac{1}{a_{j1}}$。代回上式，
   $$
-  a_{ij}=a_{i1}\cdot a_{1j},\quad \forall\, i,j\in\{1,2,\ldots,n\}
+  a_{ij}=a_{i1}a_{1j},\quad \forall\, i,j\in\{1,2,\ldots,n\}
   $$
-  令 $k_i=a_{i1}$ （由于 $a_{11}=1$，此时 $k_1=1$），则第 $i$ 行满足
+  令 $k_i=a_{i1}$（由于 $a_{11}=1$，此时 $k_1=1$），则第 $i$ 行满足
   $$
   (a_{i1},a_{i2},\ldots,a_{in})=k_i\,(a_{11},a_{12},\ldots,a_{1n}),\quad \forall\, i\in\{1,2,\ldots,n\}
   $$
@@ -143,32 +144,32 @@ $$
   
   反过来，若 $a_{ij}>0$，且 $a_{ii}=1$，并存在 $k_i>0$ 使得
   $$
-  (a_{i1},a_{i2},\ldots,a_{in})=k_i\,(a_{11},a_{12},\ldots,a_{1n}),\quad \forall\, i\in\{1,2,\ldots,n\}
+  (a_{i1},a_{i2},\ldots,a_{in})=k_i\,(a_{11},a_{12},\ldots,a_{1n}),\quad \forall\, i\in\{1,2,\ldots,n\},
   $$
-  则对任意 $i,j$ 有 $a_{ij}=k_i a_{1j}$。取 $j=i$，由 $a_{ii}=1$ 得 $1=k_i a_{1i}$，从而 $a_{1i}=\dfrac{1}{k_i}$。
+  则 $\forall\, i,j\in\{1,2,\ldots,n\}$，有 $a_{ij}=k_i a_{1j}$。取 $j=i$，由 $a_{ii}=1$ 得 $1=k_i a_{1i}$，从而 $a_{1i}=\dfrac{1}{k_i}$。
   因此
   $$
-  a_{ij}=k_i a_{1j}=k_i\cdot \frac{1}{k_j}=\frac{k_i}{k_j}
+  a_{ij}=k_i a_{1j}=k_i\frac{1}{k_j}=\frac{k_i}{k_j}
   $$
-  于是对任意 $i,j,k$，
+  于是 $\forall\, i,j,k\in\{1,2,\ldots,n\}$，
   $$
-  a_{ij}a_{jk}=\frac{k_i}{k_j}\cdot\frac{k_j}{k_k}=\frac{k_i}{k_k}=a_{ik}
+  a_{ij}a_{jk}=\frac{k_i}{k_j}\frac{k_j}{k_k}=\frac{k_i}{k_k}=a_{ik}
   $$
   即 $A$ 为一致矩阵。充分性证毕。
 
 ### <a class="smzk-accent" href="#fig-ahp-hierarchy">一致矩阵的性质（选看）</a>
-引理：$A$ 为 $n$ 阶方阵，且 $r(A)=1$，则 $A$ 有一个特征值为 $tr(A)$，其余特征值为 $0$
+引理：$A$ 为 $n$ 阶方阵，且 $r(A)=1$，则 $A$ 有一个特征值为 $tr(A)$，其余特征值为 $0$。
 
 <details>
 <summary>具体说明</summary>
 
-由秩-零化度定理可知
+由秩-零化度定理可知，
 $$
 \dim\ker(A)=n-r(A)=n-1
 $$
-因此线性方程组 $Ax=0$ 的解空间中存在 $n-1$ 个线性无关的非零解向量。对任意 $x\in\ker(A)$，都有
+因此 $\ker(A)$ 中 $\exists\, n-1$ 个线性无关的非零向量。对任意 $x\in\ker(A)$，都有
 $$
-Ax=0=0\cdot x
+Ax=0=0\,x
 $$
 这说明 $x$ 是特征值 $0$ 的特征向量。于是特征值 $0$ 的几何重数至少为 $n-1$，从而它的代数重数也至少为 $n-1$。
 
@@ -184,14 +185,82 @@ $$
 $$
 综上，$A$ 的特征值为
 $$
-\lambda_1=tr(A),\qquad \lambda_2=\cdots=\lambda_n=0.
+\lambda_1=tr(A),\qquad \lambda_2=\cdots=\lambda_n=0
 $$
 
 </details>
 
 这样我们就能得到第一条性质：在一致矩阵中，由于对角线元素都为 $1$，因此 $tr(A)=n$。即：
 $$
-\lambda_1=n,\qquad \lambda_2=\cdots=\lambda_n=0
+\lambda_1=n,\qquad \lambda_2=\lambda_3=\cdots=\lambda_n=0
 $$
 
-另外，我们很容易得到第二条性质：特征值为 $n$ 时，对应的特征向量刚好为 $k\,(\frac{1}{a_{11}},\frac{1}{a_{12}},\ldots,\frac{1}{a_{1n}})^{\mathsf T}$
+另外，我们很容易得到第二条性质：特征值为 $n$ 时，对应的特征向量刚好为 $k\,(\frac{1}{a_{11}},\frac{1}{a_{12}},\ldots,\frac{1}{a_{1n}})^{\mathsf T}$。
+
+<details>
+<summary>计算过程</summary>
+
+设 $A$ 为 $n$ 阶方阵，且是一致矩阵。由于 $A$ 为一致矩阵，上文已推出
+$$
+\forall\, i,j\in\{1,2,\ldots,n\},\quad a_{ij}=a_{i1}\,a_{1j}
+$$
+已知特征值 $n$，求特征向量只需解齐次方程组 $(A-nE)x=0$ 即可。记 $B=A-nE$（其中 $E$ 为 $n$ 阶单位矩阵），先把 $B=A-nE$ 展开写出（注意一致矩阵满足 $a_{ii}=1$）：
+$$
+B=
+\begin{pmatrix}
+1-n & a_{12} & \cdots & a_{1n}\\
+a_{21} & 1-n & \cdots & a_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+a_{n1} & a_{n2} & \cdots & 1-n
+\end{pmatrix}
+$$
+由于 $a_{ij}=a_{i1}a_{1j}$，可知 $A$ 的第 $i$ 行等于 $a_{i1}$ 倍的第 $1$ 行，对 $\forall\, i\in\{2,3,\ldots,n\}$ 做初等行变换 $R_i\leftarrow R_i-a_{i1}R_1$ 后，
+因此上述变换会消去 $A$ 部分，使得变换后的矩阵 $B'$ 在第 $i$ 行仅剩下来自 $-nE$ 的两项：
+
+对 $\forall\, i\in\{2,3,\ldots,n\}$，$\forall\, j\in\{2,3,\ldots,n\}\setminus\{i\}$，
+$$
+b'_{ij}=a_{ij}-a_{i1}a_{1j}=0
+$$
+而第 $i$ 行在第 $1$ 列与第 $i$ 列分别变为
+$$
+b'_{i1}=a_{i1}-a_{i1}(1-n)=na_{i1},\qquad b'_{ii}=(1-n)-a_{i1}a_{1i}=-n
+$$
+因此行变换后的矩阵可写为
+$$
+B'=
+\begin{pmatrix}
+1-n & a_{12} & a_{13} & \cdots & a_{1n}\\
+na_{21} & -n & 0 & \cdots & 0\\
+na_{31} & 0 & -n & \cdots & 0\\
+\vdots & \vdots & \vdots & \ddots & \vdots\\
+na_{n1} & 0 & 0 & \cdots & -n
+\end{pmatrix}
+$$
+此时需要区分第 $1$ 行与第 $i$ 行（$i\in\{2,3,\ldots,n\}$）：
+
+$$
+\text{第 }1\text{ 行：}\quad (1-n)x_1+a_{12}x_2+\cdots+a_{1n}x_n=0
+$$
+$$
+\text{第 }i\text{ 行：}\quad n a_{i1}\,x_1-nx_i=0,\quad \forall\, i\in\{2,3,\ldots,n\}
+$$
+由第 $i$ 行可得 $x_i=a_{i1}x_1$（$\forall\, i\in\{2,3,\ldots,n\}$）。将其代入第 $1$ 行，利用正互反矩阵性质 $a_{1j}a_{j1}=a_{11}=1$，可得
+$$
+(1-n)x_1+\sum_{j=2}^n a_{1j}x_j=(1-n)x_1+\sum_{j=2}^n a_{1j}a_{j1}x_1=(1-n)x_1+(n-1)x_1=0
+$$
+因此第 $1$ 行恒成立，方程组的独立约束由 $\forall\, i\in\{2,3,\ldots,n\}$ 的第 $i$ 行给出。
+从而
+$$
+x_i=a_{i1}x_1,\quad \forall\, i\in\{2,3,\ldots,n\}
+$$
+因此齐次方程组 $(A-nE)x=0$ 的解向量必形如
+$$
+x=x_1\,(1,a_{21},a_{31},\ldots,a_{n1})^{\mathsf T}
+$$
+再由正互反矩阵性质 $a_{j1}=\dfrac{1}{a_{1j}}$，可得
+$$
+(1,a_{21},a_{31},\ldots,a_{n1})^{\mathsf T}=\left(\frac{1}{a_{11}},\frac{1}{a_{12}},\ldots,\frac{1}{a_{1n}}\right)^{\mathsf T}
+$$
+因此 $(A-nE)x=0$ 的基础解（特征向量）可写为 $k\,(\frac{1}{a_{11}},\frac{1}{a_{12}},\ldots,\frac{1}{a_{1n}})^{\mathsf T}$
+
+</details>
