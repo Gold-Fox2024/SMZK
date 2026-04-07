@@ -190,7 +190,7 @@ $$
 
 </details>
 
-这样我们就能得到第一条性质：在一致矩阵中，由于对角线元素都为 $1$，因此 $tr(A)=n$。即：
+这样我们就能得到第一条性质：在一致矩阵中，由于对角线元素都为 $1$，因此 $tr(A)=n$，即：
 $$
 \lambda_1=n,\qquad \lambda_2=\lambda_3=\cdots=\lambda_n=0
 $$
@@ -264,3 +264,17 @@ $$
 因此 $(A-nE)x=0$ 的基础解（特征向量）可写为 $k\,(\frac{1}{a_{11}},\frac{1}{a_{12}},\ldots,\frac{1}{a_{1n}})^{\mathsf T}$
 
 </details>
+
+
+### 不一致性与最大特征值
+在一致矩阵中，我们已经得到 $\lambda_{\max}=n$。当判断矩阵出现不一致时（即存在 $i,j,k$ 使 $a_{ij}a_{jk}\neq a_{ik}$），矩阵不再是秩为 $1$ 的一致矩阵，一般会导致最大特征值严格大于 $n$，即
+$$
+\lambda_{\max}>n
+$$
+因此 $\lambda_{\max}-n$ 可以刻画“偏离一致性”的程度：判断越不一致，$\lambda_{\max}$ 往往越大，$\lambda_{\max}-n$ 也越大。
+
+基于这个思想，Saaty 提出了常用的一致性指标（Consistency Index, CI）：
+$$
+\mathrm{CI}=\frac{\lambda_{\max}-n}{n-1}
+$$
+其中 $\lambda_{\max}=n$ 时有 $\mathrm{CI}=0$，表示完全一致；$\lambda_{\max}$ 越偏离 $n$，$\mathrm{CI}$ 越大，表示不一致程度越高。
