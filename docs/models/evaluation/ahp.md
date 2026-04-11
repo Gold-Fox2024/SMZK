@@ -249,11 +249,11 @@ $$
 w_i=\frac{w_i}{\sum_{k=1}^n w_k},\quad i=1,2,\ldots,n
 $$
 
-### 第5步：完整代码实现（Python / MATLAB）
+## 完整代码实现（Python / MATLAB）
 
 下面给出一份可以直接复用的 AHP 代码模板。
 
-#### 5.1 Python（NumPy）
+### Python（NumPy）
 
 ```python
 import numpy as np
@@ -328,7 +328,7 @@ if __name__ == "__main__":
     ahp_calculator(A)
 ```
 
-#### 5.2 MATLAB
+### MATLAB
 
 ```matlab
 clc, clear;
@@ -395,7 +395,7 @@ else
 end
 ```
 
-### 参考资料
+## 参考资料
 - [层次分析法 你真的懂了吗？（完更）_一致矩阵的特征值为什么是n-CSDN博客](https://blog.csdn.net/Fighting_swh/article/details/107085934)
 - [《数学建模》课程教学资源（教材讲义）第八章 层次分析法](https://www.xiaokudang.com/docs/view/70bc2d770b9e4defbd97ecb1830ff89f.html)
 - [数学建模学习笔记（1）：层次分析法（AHP）（附有详细使用步骤）](https://blog.csdn.net/hanmo22357/article/details/126097360)
