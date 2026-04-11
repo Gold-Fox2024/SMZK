@@ -394,3 +394,9 @@ else
     disp('-> 警告：CR >= 0.10，该判断矩阵A未通过一致性检验，需要重新调整矩阵元素!');
 end
 ```
+
+### 参考资料
+- [层次分析法 你真的懂了吗？（完更）_一致矩阵的特征值为什么是n-CSDN博客](https://blog.csdn.net/Fighting_swh/article/details/107085934)
+- [《数学建模》课程教学资源（教材讲义）第八章 层次分析法](https://www.xiaokudang.com/docs/view/70bc2d770b9e4defbd97ecb1830ff89f.html)
+- [数学建模学习笔记（1）：层次分析法（AHP）（附有详细使用步骤）](https://blog.csdn.net/hanmo22357/article/details/126097360)
+- GPT-5.3
