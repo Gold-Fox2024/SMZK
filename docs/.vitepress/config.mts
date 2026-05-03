@@ -66,8 +66,8 @@ export default defineConfig({
         {
           text: '评价类模型',
           items: [
-            { text: '层次分析法 (AHP)', link: '/models/evaluation/ahp' },
-            { text: '模糊综合评价', link: '/models/evaluation/fuzzy' },
+            { text: 'AHP (层次分析法)', link: '/models/evaluation/ahp' },
+            { text: 'TOPSIS (优劣解距离法)', link: '/models/evaluation/topsis' },
           ]
         },
         {
