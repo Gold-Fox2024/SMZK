@@ -3,7 +3,7 @@ title: 优劣解距离法
 description: 一种根据有限个评价对象与理想化目标的接近程度进行排序的方法。
 ---
 
-# TOPSIS (优劣解距离法)
+# TOPSIS（优劣解距离法）
 
 > 理想解的排序方法
 
@@ -67,11 +67,15 @@ $$
 
 得到标准化矩阵 $Z = (z_{ij})_{n \times m}$。
 
-*(可选)* **构造加权标准化矩阵**：在实际问题中，各个指标的重要性往往不同。如果已知各指标的权重 $w=(w_1, w_2, \ldots, w_m)$（满足 $w_j\ge 0,\ \sum_{j=1}^m w_j=1$），我们需要将权重乘入标准化矩阵中，得到加权标准化矩阵 $V = (v_{ij})_{n \times m}$：
+<details>
+<summary>（可选）构造加权标准化矩阵</summary>
+
+在实际问题中，各个指标的重要性往往不同。如果已知各指标的权重 $w=(w_1, w_2, \ldots, w_m)$（满足 $w_j\ge 0,\ \sum_{j=1}^m w_j=1$），我们需要将权重乘入标准化矩阵中，得到加权标准化矩阵 $V = (v_{ij})_{n \times m}$：
 
 $$
 v_{ij} = w_j \cdot z_{ij}
 $$
+</details>
 
 > 若未给定权重，则默认各指标权重相等，直接取 $V = Z$ 进行后续计算即可。
 
@@ -114,6 +118,150 @@ $$
 :::
 
 ## 优缺点与注意事项
-- **优点**：思路直观、计算简单；能同时考虑“接近最优”和“远离最劣”；对样本量与指标个数限制较少。
+- **优点**：思路直观、计算简单；能同时考虑 “接近最优” 和 “远离最劣”；对样本量与指标个数限制较少。
 - **局限**：结果对标准化方式与权重较敏感；欧氏距离容易受极端值影响；默认指标相互独立、可比。
-- **实践建议**：成本型指标要么先正向化、要么在理想解构造时用“最小为正理想、最大为负理想”，避免重复处理；若某列全相等导致标准化分母为 0，可将该列标准化结果置为 0 并视为“无区分力”指标。
+- **实践建议**：成本型指标要么先正向化、要么在理想解构造时用 “最小为正理想、最大为负理想”，避免重复处理；若某列全相等导致标准化分母为 0，可将该列标准化结果置为 0 并视为 “无区分力” 指标。
+
+## 完整代码实现（Python / MATLAB）
+
+下面给出一份可以直接复用的 TOPSIS 代码模板。
+
+### Python（NumPy）
+
+```python
+import numpy as np
+import io
+
+def topsis_calculator(matrix_str, kinds):
+    """
+    计算 TOPSIS 综合评价得分及排名
+    
+    参数:
+    matrix_str : str, 评估矩阵的字符串形式
+    kinds      : list, 每一列指标的类型和参数
+                 - 1: 极大型
+                 - 2: 极小型
+                 - 3: 中间型，例如 (3, 165) 表示最佳值为 165
+                 - 4: 区间型，例如 (4, 90, 100) 表示最佳区间为 [90, 100]
+    """
+    # 1. 解析矩阵
+    A = np.loadtxt(io.StringIO(matrix_str.strip()))
+    X = A.copy()
+
+    # 2. 指标正向化
+    for i, k in enumerate(kinds):
+        col = X[:, i]
+        k_type = k[0] if isinstance(k, (list, tuple)) else k  # 获取指标大类
+        
+        if k_type == 2:   # 极小型
+            X[:, i] = np.max(col) - col
+        elif k_type == 3: # 中间型 (k[1] 为最优值)
+            M = np.max(np.abs(col - k[1])) or 1
+            X[:, i] = 1 - np.abs(col - k[1]) / M
+        elif k_type == 4: # 区间型 (k[1] 为下限, k[2] 为上限)
+            _, a, b = k
+            M = max(a - np.min(col), np.max(col) - b) or 1
+            X[:, i] = np.where(col < a, 1 - (a - col) / M, np.where(col > b, 1 - (col - b) / M, 1))
+
+    # 3. 矩阵标准化 
+    Z = X / np.sqrt(np.sum(X**2, axis=0))
+
+    # 4. 计算距离与得分
+    d_z = np.linalg.norm(Z - np.max(Z, axis=0), axis=1) # 距离正理想解
+    d_f = np.linalg.norm(Z - np.min(Z, axis=0), axis=1) # 距离负理想解
+
+    score = d_f / (d_z + d_f)
+    Score_100 = 100 * score / np.sum(score)             # 归一化百分制得分
+
+    # 5. 输出结果
+    print("--- TOPSIS 评估结果 ---")
+    for i, s in enumerate(Score_100):
+        print(f"方案 {i+1} 得分: {s:.4f}")
+
+    # argsort排序逻辑：加负号变降序，再argsort得到名次
+    print(f"\n综合排名: {np.argsort(-Score_100) + 1}")
+    
+    return Score_100
+
+if __name__ == "__main__":
+    # TODO: 在此处手动输入或替换为你的评估矩阵
+    matrix_str = """
+    9  10 175 120
+    8  7  164 80
+    6  3  157 90
+    """
+
+    # TODO: 定义每一列指标的类型和参数
+    kinds =[1, 2, (3, 165), (4, 90, 100)]
+    
+    topsis_calculator(matrix_str, kinds)
+```
+
+### MATLAB
+
+```matlab
+clc, clear;
+
+% TODO: 请在此处手动输入评估矩阵 X
+X = [
+    9 10 175 120; 
+    8 7  164 80; 
+    6 3  157 90
+];
+
+% TODO: 定义每一列指标的类型和参数
+% 1: 极大型
+% 2: 极小型
+% 3: 中间型，例如 [3, 165] 表示最佳值为165
+% 4: 区间型，例如 [4, 90, 100] 表示最佳区间为[90, 100]
+kinds = {1, 2, [3, 165], [4, 90, 100]};
+% ====================================================
+
+% --- 核心算法区 ---
+[n, m] = size(X);
+X_forward = X;
+
+% 1. 指标正向化
+for i = 1:m
+    k = kinds{i};
+    type = k(1);
+    col = X(:, i);
+    
+    if type == 2       % 极小型
+        X_forward(:, i) = max(col) - col;
+    elseif type == 3   % 中间型
+        M = max(abs(col - k(2)));
+        X_forward(:, i) = 1 - abs(col - k(2)) / max(M, eps); % max(M, eps) 防止分母为0
+    elseif type == 4   % 区间型
+        a = k(2); b = k(3);
+        M = max([a - min(col), max(col) - b]);
+        M = max(M, eps); % 防止分母为0
+        
+        new_col = ones(n, 1); % 默认落在区间内，值为1
+        new_col(col < a) = 1 - (a - col(col < a)) / M; % 小于下限的逻辑计算并替换
+        new_col(col > b) = 1 - (col(col > b) - b) / M; % 大于上限的逻辑计算并替换
+        X_forward(:, i) = new_col;
+    end
+end
+
+% 2. 矩阵标准化
+Z = X_forward ./ vecnorm(X_forward, 2, 1);
+
+% 3. 计算距离与得分
+D_P = vecnorm(Z - max(Z), 2, 2); % 距离正理想解的距离
+D_N = vecnorm(Z - min(Z), 2, 2); % 距离负理想解的距离
+
+% 4. 百分制得分
+score = D_N ./ (D_P + D_N);
+Score_100 = 100 * score / sum(score);
+
+% 5. 综合排名排序
+[~, rank_idx] = sort(Score_100, 'descend');
+final_rank = zeros(n, 1);
+final_rank(rank_idx) = 1:n;
+
+% --- 输出结果 ---
+disp('====== TOPSIS 评估结果 ======')
+result_table = table((1:n)', Score_100, final_rank, 'VariableNames', {'方案', '百分制得分', '综合排名'});
+disp(result_table)
+```
